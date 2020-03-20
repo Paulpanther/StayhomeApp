@@ -11,19 +11,24 @@ import android.util.Log
 class WifiChangeReceiver : BroadcastReceiver() {
 
     companion object {
-        var currentIntent: PendingIntent? = null
+        lateinit var currentIntent: PendingIntent
         var lastId = -1
 
         fun registerCallback(applicationContext: Context) {
-            val manager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val manager =
+                applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             val network = NetworkRequest.Builder()
                 .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
                 .build()
-            if (currentIntent != null) {
-                manager.unregisterNetworkCallback(currentIntent!!)
+            if (::currentIntent.isInitialized) {
+                manager.unregisterNetworkCallback(currentIntent)
             }
-            currentIntent = PendingIntent.getBroadcast(applicationContext, 1, Intent(applicationContext, WifiChangeReceiver::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
-            manager.registerNetworkCallback(network, currentIntent!!)
+            currentIntent =
+                PendingIntent.getBroadcast(applicationContext,
+                    1,
+                    Intent(applicationContext, WifiChangeReceiver::class.java),
+                    PendingIntent.FLAG_UPDATE_CURRENT)
+            manager.registerNetworkCallback(network, currentIntent)
         }
     }
 
