@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.wvvh.stayhomeapp">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <receiver android:name=".WifiChangeReceiver"  android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.NETWORK_STATE_CHANGED_ACTION"/>
+                <action android:name="android.intent.action.NETWORK_IDS_CHANGED_ACTION"/>
+            </intent-filter>
+        </receiver>
+    </application>
 </manifest>
