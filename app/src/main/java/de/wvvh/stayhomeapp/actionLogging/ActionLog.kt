@@ -3,15 +3,10 @@ package de.wvvh.stayhomeapp.actionLogging
 import java.util.*
 
 enum class Action {
-    ACTION_ONE,
-    ACTION_TWO,
-    ACTION_THREE,
+    LEFT_HOME,
 }
 
 data class Entry(val date: Date, val action: Action)
-
-// TODO: Aggregators for Action log
-// TODO: Achievements using aggregators, registering to action log for changes
 
 /**
  * @author Antonius Naumann
