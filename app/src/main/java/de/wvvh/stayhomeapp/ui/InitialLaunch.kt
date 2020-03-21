@@ -10,16 +10,16 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 
-class InitalLaunch : AppCompatActivity() {
+class InitialLaunch : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_initial_launch)
-        supportActionBar?.setTitle(R.string.home_wifi)
+        supportActionBar?.hide()
     }
 
     public fun updateWifi(){
-        var tv: TextView = findViewById<TextView>(R.id.wifi_name)
-        tv.setText(Math.random().toString())
+        //var tv: TextView = findViewById<TextView>(R.id.wifi_name)
+        //tv.setText(Math.random().toString())
     }
     public fun openWiFi(view: View){
         startActivity( Intent(Settings.ACTION_WIFI_SETTINGS));
