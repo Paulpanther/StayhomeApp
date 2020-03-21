@@ -15,7 +15,8 @@
         <activity android:name=".ui.NotHomeQuestionActivity" />
         <activity
             android:name=".ui.MainActivity"
-            android:label="@string/title_activity_default">
+            android:label="@string/title_activity_default"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
