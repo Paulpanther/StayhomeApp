@@ -12,13 +12,16 @@ import io.paperdb.Paper
 import java.util.*
 
 class WifiChangeWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
-    private val tag = "WifiChangeWorker"
+
+    companion object {
+        const val TAG = "WifiChangeWorker"
+    }
 
     override fun doWork(): Result {
         val wifi = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
         val id = wifi.connectionInfo.networkId
 
-        Log.d(tag, "Connected to network $id")
+        Log.d(TAG, "Connected to network $id")
 
         val connections = Paper.book().read<MutableList<Connection>>(Storage.CONNECTIONS, mutableListOf())
         connections.add(Connection(Calendar.getInstance().timeInMillis, id))

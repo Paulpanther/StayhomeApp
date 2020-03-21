@@ -19,9 +19,9 @@ class MainActivity : AppCompatActivity() {
         Paper.init(applicationContext)
 
         // TODO replace with actual home wifi
-        Paper.book().write(Storage.HOME_WIFI, 72)
-
-        WifiHelper.enqueueWorker()
-        WifiHelper.startHomeQuestionActivityIfNeeded(this)
+//        Paper.book().write(Storage.HOME_WIFI, 72)
+//
+//        WifiHelper.enqueueWorker()
+//        WifiHelper.startHomeQuestionActivityIfNeeded(this)
     }
 }

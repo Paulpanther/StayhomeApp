@@ -30,8 +30,11 @@ object WifiHelper {
 
     fun enqueueWorker() {
         val work = PeriodicWorkRequestBuilder<WifiChangeWorker>(15, TimeUnit.MINUTES)
+            .addTag(WifiChangeWorker.TAG)
             .build()
         val workManager = WorkManager.getInstance()
+
+        workManager.cancelAllWorkByTag(WifiChangeWorker.TAG)
         workManager.enqueue(work)
     }
 
