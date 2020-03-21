@@ -8,7 +8,7 @@
     <string name="notification_not_home_title">You left your home</string>
     <string name="notification_not_home_text">Open the App to tell us your reasons</string>
 
-    <string name="current_wifi">Current WiFi:</string>
+    <string name="current_wifi">Home Network</string>
     <string name="info_why_wifi">This is a very very veeeery long placeholder just to tell you something very interestening. it is so interestening that i have no clue if im spelling interesting correctly, but not interesting enough, that i would check. We track you.</string>
     <string name="home_wifi">Home Network</string>
     <string name="button_open_wifi_settings">WIFI SETTINGS</string>
