@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">StayHomeApp</string>
+    <string name="home_wifi">Home Network</string>
+    <string name="current_wifi">Current WiFi:</string>
+    <string name="info_why_wifi">We need this information, so we can automatically recognize when you leave the house. It is only used in this app, and not transfered anywhere. If the WiFi above is not your homenetwork, please connect to it first, and come back into this app.</string>
+    <string name="button_confirm_wifi">SET WIFI</string>
+    <string name="button_open_wifi_settings">WIFI SETTINGS</string>
 </resources>
