@@ -7,7 +7,8 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import de.wvvh.stayhomeapp.*
 import de.wvvh.stayhomeapp.util.NotificationHelper
-import de.wvvh.stayhomeapp.util.StorageManager
+import de.wvvh.stayhomeapp.util.Storage
+import io.paperdb.Paper
 import java.util.*
 
 class WifiChangeWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
@@ -19,18 +20,11 @@ class WifiChangeWorker(context: Context, params: WorkerParameters) : Worker(cont
 
         Log.d(tag, "Connected to network $id")
 
-        StorageManager(applicationContext).connections
-            .add(
-                Connection(
-                    Calendar.getInstance().timeInMillis,
-                    id
-                )
-            )
+        val connections = Paper.book().read<MutableList<Connection>>(Storage.CONNECTIONS, mutableListOf())
+        connections.add(Connection(Calendar.getInstance().timeInMillis, id))
+        Paper.book().write(Storage.CONNECTIONS, connections)
 
-        if (WifiHelper.isJustReturnedToHome(
-                applicationContext
-            )
-        ) {
+        if (WifiHelper.isJustReturnedToHome(applicationContext)) {
             NotificationHelper.showNotification(
                 applicationContext,
                 R.string.notification_not_home_title,

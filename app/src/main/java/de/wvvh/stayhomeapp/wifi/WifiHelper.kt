@@ -5,14 +5,15 @@ import android.content.Intent
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import de.wvvh.stayhomeapp.NotHomeQuestionActivity
-import de.wvvh.stayhomeapp.util.StorageManager
+import de.wvvh.stayhomeapp.util.Storage
+import io.paperdb.Paper
 import java.util.concurrent.TimeUnit
 
 object WifiHelper {
 
     fun isJustReturnedToHome(c: Context): Boolean {
-        val connections = StorageManager(c).connections.get()
-        val home = StorageManager(c).homeWifi.get()
+        val connections = Paper.book().read<List<Connection>>(Storage.CONNECTIONS, mutableListOf())
+        val home = Paper.book().read<Int>(Storage.HOME_WIFI)
 
         for (i in connections.size - 1 downTo 1) {
             val current = connections[i]

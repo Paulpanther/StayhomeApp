@@ -2,12 +2,9 @@ package de.wvvh.stayhomeapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
-import de.wvvh.stayhomeapp.util.StorageManager
-import de.wvvh.stayhomeapp.wifi.WifiChangeWorker
+import de.wvvh.stayhomeapp.util.Storage
 import de.wvvh.stayhomeapp.wifi.WifiHelper
-import java.util.concurrent.TimeUnit
+import io.paperdb.Paper
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,8 +13,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        Paper.init(applicationContext)
+
         // TODO replace with actual home wifi
-        StorageManager(this).homeWifi.set(72)
+        Paper.book().write(Storage.HOME_WIFI, 72)
 
         WifiHelper.enqueueWorker()
         WifiHelper.startHomeQuestionActivityIfNeeded(this)
