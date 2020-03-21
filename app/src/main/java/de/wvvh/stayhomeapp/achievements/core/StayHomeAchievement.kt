@@ -28,21 +28,21 @@ sealed class StayHomeStreak(streakLength: Int): StreakAchievement(streakLength) 
 }
 
 object StayHome3Days: StayHomeStreak(3) {
-    override val imageResource: Int = R.drawable.ic_launcher_foreground
+    override val imageResource: Int = R.drawable.ic_icon_stubenhocker_3
     override val titleResource: Int = R.string.core_couch_potato_1_title
     override val descriptionResource: Int = R.string.core_couch_potato_1_desc
     override val explanationResource: Int = R.string.core_couch_potato_1_explanation
 }
 
 object StayHome5Days: StayHomeStreak(5) {
-    override val imageResource: Int = R.drawable.ic_launcher_foreground
+    override val imageResource: Int = R.drawable.ic_icon_stubenhocker_5
     override val titleResource: Int = R.string.core_couch_potato_2_title
     override val descriptionResource: Int = R.string.core_couch_potato_2_desc
     override val explanationResource: Int = R.string.core_couch_potato_1_explanation
 }
 
 object StayHome7Days: StayHomeStreak(7) {
-    override val imageResource: Int = R.drawable.ic_launcher_foreground
+    override val imageResource: Int = R.drawable.ic_icon_stubenhocker_7
     override val titleResource: Int = R.string.core_couch_potato_3_title
     override val descriptionResource: Int = R.string.core_couch_potato_2_desc
     override val explanationResource: Int = R.string.core_couch_potato_1_explanation
