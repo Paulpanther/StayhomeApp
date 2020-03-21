@@ -12,6 +12,10 @@ object AchievementStore {
         log.addObserver(this::notifyAchievements)
     }
 
+    // TODO: save if achievements are completed (progress)
+    // TODO: save progress to file system and implement logic to reload progress
+    // TODO: how to map objects to file system? (reflection, id system whatever)
+
     fun register(element: Achievement) = achievements.add(element)
     private fun notifyAchievements(log: ActionLog) = achievements.forEach { it.evaluate(log) }
 }
