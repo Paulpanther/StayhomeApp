@@ -8,7 +8,7 @@ import java.util.*
  */
 abstract class Aggregator(val log: ActionLog) {
     /**
-     * Takes an action and
+     * Takes an action and represents it by a number
      */
     abstract fun aggregate(action: Action): Int
 }

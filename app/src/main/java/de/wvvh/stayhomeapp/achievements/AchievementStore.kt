@@ -1,10 +1,5 @@
 package de.wvvh.stayhomeapp.achievements
-
-import de.wvvh.stayhomeapp.actionLogging.Action
 import de.wvvh.stayhomeapp.actionLogging.ActionLog
-import de.wvvh.stayhomeapp.actionLogging.Aggregator
-import de.wvvh.stayhomeapp.actionLogging.IntervalCountAggregator
-import java.util.*
 
 /**
  * @author Antonius Naumann
@@ -12,6 +7,11 @@ import java.util.*
  */
 object AchievementStore {
     private val achievements: MutableList<Achievement> = mutableListOf()
+    private val log = ActionLog() // TODO: reload from persistent memory instead
+    init {
+        log.addObserver(this::notifyAchievements)
+    }
 
     fun register(element: Achievement) = achievements.add(element)
+    private fun notifyAchievements(log: ActionLog) = achievements.forEach { it.evaluate(log) }
 }
