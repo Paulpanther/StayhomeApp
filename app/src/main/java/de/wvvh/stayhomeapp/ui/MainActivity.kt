@@ -9,6 +9,7 @@ import de.wvvh.stayhomeapp.R
 import de.wvvh.stayhomeapp.achievements.AchievementModules
 import de.wvvh.stayhomeapp.achievements.AchievementStore
 import de.wvvh.stayhomeapp.ui.main.SectionsPagerAdapter
+import io.paperdb.Paper
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,7 +25,10 @@ class MainActivity : AppCompatActivity() {
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
 
+        Paper.init(applicationContext)
+
         loadModules()
+        AchievementStore.notifyAchievements()
     }
 
     private fun loadModules() = AchievementModules.modules.forEach { AchievementStore.loadModule(it) }

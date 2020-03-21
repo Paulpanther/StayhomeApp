@@ -1,17 +1,44 @@
 package de.wvvh.stayhomeapp.achievements
 import de.wvvh.stayhomeapp.actionLogging.ActionLog
+import de.wvvh.stayhomeapp.actionLogging.Entry
+import de.wvvh.stayhomeapp.actionLogging.LogLoader
+import de.wvvh.stayhomeapp.util.Storage
+import de.wvvh.stayhomeapp.util.unorderedEquals
+import io.paperdb.Paper
 
 /**
  * @author Antonius Naumann
  * @date 21.03.2020
  */
 object AchievementStore {
-    private val log = ActionLog() // TODO: reload from persistent memory instead
+    private val _log = LogLoader.read()
+    val log: List<Entry>
+        get() = _log
+
     private val _achievements: MutableList<IAchievement> = mutableListOf()
     val achievements: List<IAchievement>
         get() = _achievements
+
+    private lateinit var _finishedAchievements: List<IAchievement>
+    var finishedAchievements: List<IAchievement> = listOf()
+        get() {
+            if (!::_finishedAchievements.isInitialized) {
+                _finishedAchievements = FinishedAchievementLoader.fromAll(_achievements)
+            }
+            return _finishedAchievements
+        }
+        private set(value) {
+            FinishedAchievementLoader.write(value)
+            field = value
+        }
+
     init {
-        log.addObserver(this::notifyAchievements)
+        _log.addObserver(this::notifyAchievements)
+    }
+
+    fun addEntry(element: Entry) {
+        _log.add(element)
+        LogLoader.write(_log)
     }
 
     // TODO: save if achievements are completed (progress)
@@ -20,5 +47,11 @@ object AchievementStore {
 
     fun loadModule(module: IAchievementModule) = module.achievements.forEach { register(it)}
     fun register(element: IAchievement) = _achievements.add(element)
-    private fun notifyAchievements(log: ActionLog) = achievements.forEach { it.evaluate(log) }
+
+    public fun notifyAchievements(log: ActionLog = _log) {
+        val finished = achievements.filter { it.evaluate(log) }
+        if (!(finished unorderedEquals finishedAchievements)) {
+            finishedAchievements = finished
+        }
+    }
 }
