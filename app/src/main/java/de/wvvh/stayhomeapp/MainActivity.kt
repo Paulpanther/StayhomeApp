@@ -1,6 +1,7 @@
 package de.wvvh.stayhomeapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import de.wvvh.stayhomeapp.util.PermissionHelper
 import de.wvvh.stayhomeapp.util.Storage
@@ -22,24 +23,5 @@ class MainActivity : AppCompatActivity() {
 
         WifiHelper.enqueueWorker()
         WifiHelper.startHomeQuestionActivityIfNeeded(this)
-    }
-
-    fun getWifi() {
-        if (!PermissionHelper.hasPermissions(this, WifiHelper.PERMISSIONS_NEEDED)) {
-            PermissionHelper.requestPermissions(this, WifiHelper.PERMISSIONS_NEEDED)
-        }
-        // Do Stuff
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        if (PermissionHelper.hasPermissions(this, WifiHelper.PERMISSIONS_NEEDED)) {
-            // Do Stuff
-        }
     }
 }
