@@ -1,0 +1,42 @@
+package de.wvvh.stayhomeapp.wifi
+
+import android.content.Context
+import android.content.Intent
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
+import de.wvvh.stayhomeapp.NotHomeQuestionActivity
+import de.wvvh.stayhomeapp.util.StorageManager
+import java.util.concurrent.TimeUnit
+
+object WifiHelper {
+
+    fun isJustReturnedToHome(c: Context): Boolean {
+        val connections = StorageManager(c).connections.get()
+        val home = StorageManager(c).homeWifi.get()
+
+        for (i in connections.size - 1 downTo 1) {
+            val current = connections[i]
+            val prev = connections[i - 1]
+            if (!current.answeredQuestion
+                && current.id == home
+                && prev.id != home) {
+                return true
+            }
+        }
+        return false
+    }
+
+    fun enqueueWorker() {
+        val work = PeriodicWorkRequestBuilder<WifiChangeWorker>(15, TimeUnit.MINUTES)
+            .build()
+        val workManager = WorkManager.getInstance()
+        workManager.enqueue(work)
+    }
+
+    fun startHomeQuestionActivityIfNeeded(c: Context) {
+        if (isJustReturnedToHome(c)) {
+            val intent = Intent(c, NotHomeQuestionActivity::class.java)
+            c.startActivity(intent)
+        }
+    }
+}

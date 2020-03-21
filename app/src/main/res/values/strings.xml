@@ -2,4 +2,6 @@
     <string name="app_name">StayHomeApp</string>
 
     <string name="notification_channel">StayHome App Notifications</string>
+    <string name="notification_not_home_title">You left your home</string>
+    <string name="notification_not_home_text">Open the App to tell us your reasons</string>
 </resources>

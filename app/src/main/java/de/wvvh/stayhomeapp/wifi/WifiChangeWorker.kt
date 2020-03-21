@@ -1,0 +1,44 @@
+package de.wvvh.stayhomeapp.wifi
+
+import android.content.Context
+import android.net.wifi.WifiManager
+import android.util.Log
+import androidx.work.Worker
+import androidx.work.WorkerParameters
+import de.wvvh.stayhomeapp.*
+import de.wvvh.stayhomeapp.util.NotificationHelper
+import de.wvvh.stayhomeapp.util.StorageManager
+import java.util.*
+
+class WifiChangeWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
+    private val tag = "WifiChangeWorker"
+
+    override fun doWork(): Result {
+        val wifi = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val id = wifi.connectionInfo.networkId
+
+        Log.d(tag, "Connected to network $id")
+
+        StorageManager(applicationContext).connections
+            .add(
+                Connection(
+                    Calendar.getInstance().timeInMillis,
+                    id
+                )
+            )
+
+        if (WifiHelper.isJustReturnedToHome(
+                applicationContext
+            )
+        ) {
+            NotificationHelper.showNotification(
+                applicationContext,
+                R.string.notification_not_home_title,
+                R.string.notification_not_home_text
+            )
+        }
+
+        return Result.success()
+    }
+
+}

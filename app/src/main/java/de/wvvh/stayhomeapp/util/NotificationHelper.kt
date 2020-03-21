@@ -1,4 +1,4 @@
-package de.wvvh.stayhomeapp
+package de.wvvh.stayhomeapp.util
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -7,13 +7,19 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import de.wvvh.stayhomeapp.MainActivity
+import de.wvvh.stayhomeapp.R
 
 object NotificationHelper {
 
     private const val CHANNEL_ID = "de.wwvh.stayhomeapp"
 
     fun showNotification(c: Context, title: Int, message: Int) {
-        showNotification(c, c.getText(title) as String, c.getText(message) as String)
+        showNotification(
+            c,
+            c.getText(title) as String,
+            c.getText(message) as String
+        )
     }
 
     fun showNotification(c: Context, title: String, message: String) {
@@ -25,7 +31,9 @@ object NotificationHelper {
         )
 
         val notificationBuilder =
-            NotificationCompat.Builder(c, CHANNEL_ID)
+            NotificationCompat.Builder(c,
+                CHANNEL_ID
+            )
                 .setContentTitle(title)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentText(message)
