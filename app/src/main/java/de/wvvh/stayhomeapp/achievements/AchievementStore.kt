@@ -6,8 +6,10 @@ import de.wvvh.stayhomeapp.actionLogging.ActionLog
  * @date 21.03.2020
  */
 object AchievementStore {
-    private val achievements: MutableList<IAchievement> = mutableListOf()
     private val log = ActionLog() // TODO: reload from persistent memory instead
+    private val _achievements: MutableList<IAchievement> = mutableListOf()
+    val achievements: List<IAchievement>
+        get() = _achievements
     init {
         log.addObserver(this::notifyAchievements)
     }
@@ -17,6 +19,6 @@ object AchievementStore {
     // TODO: how to map objects to file system? (reflection, id system whatever)
 
     fun loadModule(module: IAchievementModule) = module.achievements.forEach { register(it)}
-    fun register(element: IAchievement) = achievements.add(element)
+    fun register(element: IAchievement) = _achievements.add(element)
     private fun notifyAchievements(log: ActionLog) = achievements.forEach { it.evaluate(log) }
 }

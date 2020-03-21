@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    style="@style/Widget.MaterialComponents.CardView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -13,10 +14,11 @@
 
         <!-- Media -->
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="194dp"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_gravity="center_horizontal"
             android:id="@+id/achievement_icon"
-            app:srcCompat="@drawable/ic_launcher_foreground"
+            app:srcCompat="@drawable/ic_launcher_background"
             android:scaleType="centerCrop"
             android:contentDescription="Achievement Picture"
             tools:ignore="HardcodedText" />
@@ -33,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/achievement_title"
                 android:text="Achievement title"
-                android:textAppearance="?attr/textAppearanceHeadline6"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 tools:ignore="HardcodedText" />
             <TextView
                 android:layout_width="wrap_content"
@@ -41,18 +43,19 @@
                 android:layout_marginTop="8dp"
                 android:id="@+id/achievement_description"
                 android:text="Explanation how to get this achievement or atleast a hint"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
-                tools:ignore="HardcodedText" />
+                style="@style/TextAppearance.MaterialComponents.Body2"
+                tools:ignore="HardcodedText"
+                android:visibility="gone"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:id="@+id/achievement_explanation"
                 android:text="Information why this behaviour could be useful to tackle the COVID-19 crisis"
-                android:textAppearance="?attr/textAppearanceBody2"
+                style="@style/TextAppearance.MaterialComponents.Body2"
                 android:textColor="?android:attr/textColorSecondary"
-                tools:ignore="HardcodedText" />
+                tools:ignore="HardcodedText"
+                android:visibility="gone"/>
 
         </LinearLayout>
     </LinearLayout>
