@@ -15,6 +15,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="194dp"
+            android:id="@+id/achievement_icon"
             app:srcCompat="@drawable/ic_launcher_foreground"
             android:scaleType="centerCrop"
             android:contentDescription="Achievement Picture"
@@ -30,6 +31,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/achievement_title"
                 android:text="Achievement title"
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 tools:ignore="HardcodedText" />
@@ -37,6 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:id="@+id/achievement_description"
                 android:text="Explanation how to get this achievement or atleast a hint"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
@@ -45,6 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:id="@+id/achievement_explanation"
                 android:text="Information why this behaviour could be useful to tackle the COVID-19 crisis"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"

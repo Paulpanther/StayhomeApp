@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import de.wvvh.stayhomeapp.R
+import de.wvvh.stayhomeapp.ui.main.achievements.AchievementFragment
 
 private val TAB_TITLES = arrayOf(
     R.string.tab_quests,

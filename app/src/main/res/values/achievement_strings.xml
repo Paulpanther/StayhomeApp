@@ -1,0 +1,13 @@
+<resources>
+    <string name="achievement_sample_title"> Great Achievement </string>
+    <string name="achievement_sample_desc">
+        You can earn this achievement by simply being an amazing person.
+        Love people like they love you, love them even if they hate you.
+        It does not matter, spread the love and stay positive!
+    </string>
+    <string name="achievement_sample_explanation">
+        If you are nice to other people, other people might be nice to you. Being nice to each other
+        and caring for other people is crucial to fight the current COVID-19 crisis. United we stand,
+        divided we fall!
+    </string>
+</resources>

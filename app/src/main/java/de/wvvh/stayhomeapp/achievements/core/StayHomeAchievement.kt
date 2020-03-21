@@ -1,5 +1,6 @@
 package de.wvvh.stayhomeapp.achievements.core
 
+import de.wvvh.stayhomeapp.R
 import de.wvvh.stayhomeapp.achievements.StreakAchievement
 import de.wvvh.stayhomeapp.actionLogging.Action
 import de.wvvh.stayhomeapp.actionLogging.ActionLog
@@ -26,6 +27,23 @@ sealed class StayHomeStreak(streakLength: Int): StreakAchievement(streakLength) 
     override val hidden = false
 }
 
-object StayHome3Days: StayHomeStreak(3)
-object StayHome5Days: StayHomeStreak(5)
-object StayHome7Days: StayHomeStreak(7)
+object StayHome3Days: StayHomeStreak(3) {
+    override val imageResource: Int = R.drawable.ic_launcher_foreground
+    override val titleResource: Int = R.string.achievement_sample_title
+    override val descriptionResource: Int = R.string.achievement_sample_desc
+    override val explanationResource: Int = R.string.achievement_sample_explanation
+}
+
+object StayHome5Days: StayHomeStreak(5) {
+    override val imageResource: Int = R.drawable.ic_launcher_foreground
+    override val titleResource: Int = R.string.achievement_sample_title
+    override val descriptionResource: Int = R.string.achievement_sample_desc
+    override val explanationResource: Int = R.string.achievement_sample_explanation
+}
+
+object StayHome7Days: StayHomeStreak(7) {
+    override val imageResource: Int = R.drawable.ic_launcher_foreground
+    override val titleResource: Int = R.string.achievement_sample_title
+    override val descriptionResource: Int = R.string.achievement_sample_desc
+    override val explanationResource: Int = R.string.achievement_sample_explanation
+}

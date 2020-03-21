@@ -8,6 +8,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import de.wvvh.stayhomeapp.R
+import de.wvvh.stayhomeapp.achievements.AchievementModules
+import de.wvvh.stayhomeapp.achievements.AchievementStore
 import de.wvvh.stayhomeapp.ui.main.SectionsPagerAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -23,5 +25,9 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
+
+        loadModules()
     }
+
+    private fun loadModules() = AchievementModules.modules.forEach { AchievementStore.loadModule(it) }
 }

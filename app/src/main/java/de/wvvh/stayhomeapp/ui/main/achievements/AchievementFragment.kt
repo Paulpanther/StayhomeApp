@@ -1,10 +1,11 @@
-package de.wvvh.stayhomeapp.ui.main
+package de.wvvh.stayhomeapp.ui.main.achievements
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import de.wvvh.stayhomeapp.R
+import de.wvvh.stayhomeapp.ui.main.TabFragment
 
 /**
  * @author Antonius Naumann
