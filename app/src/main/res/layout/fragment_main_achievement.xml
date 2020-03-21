@@ -15,4 +15,16 @@
         android:padding="4dp"
         tools:listitem="@layout/achievement_card" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/shadowColor"
+        android:visibility="gone"
+        android:id="@+id/big_card">
+        <include layout="@layout/achievement_card_large"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="32dp" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
