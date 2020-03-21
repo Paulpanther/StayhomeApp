@@ -5,7 +5,7 @@ import android.content.Intent
 import android.net.wifi.WifiManager
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
-import de.wvvh.stayhomeapp.NotHomeQuestionActivity
+import de.wvvh.stayhomeapp.ui.NotHomeQuestionActivity
 import de.wvvh.stayhomeapp.util.Storage
 import io.paperdb.Paper
 import java.util.concurrent.TimeUnit

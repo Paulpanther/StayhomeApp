@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NotHomeQuestionActivity" />
+        <activity android:name=".ui.NotHomeQuestionActivity" />
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/title_activity_default"

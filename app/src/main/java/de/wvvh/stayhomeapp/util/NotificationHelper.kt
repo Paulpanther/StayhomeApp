@@ -7,8 +7,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
-import de.wvvh.stayhomeapp.MainActivity
 import de.wvvh.stayhomeapp.R
+import de.wvvh.stayhomeapp.ui.MainActivity
 
 object NotificationHelper {
 

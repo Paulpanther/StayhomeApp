@@ -1,7 +1,8 @@
-package de.wvvh.stayhomeapp
+package de.wvvh.stayhomeapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import de.wvvh.stayhomeapp.R
 
 class NotHomeQuestionActivity : AppCompatActivity() {
 
