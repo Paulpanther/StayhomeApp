@@ -9,6 +9,7 @@ import de.wvvh.stayhomeapp.actionLogging.TagFilter
  * @date 22.03.2020
  */
 interface IQuest {
+    val tag: String
     val exp: Int
     val titleResource: Int
     val descriptionResource: Int
