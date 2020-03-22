@@ -3,6 +3,9 @@ package de.wvvh.stayhomeapp.quests
 import de.wvvh.stayhomeapp.achievements.AchievementStore
 import de.wvvh.stayhomeapp.actionLogging.Action
 import de.wvvh.stayhomeapp.actionLogging.Entry
+import de.wvvh.stayhomeapp.util.Storage
+import io.paperdb.Paper
+import java.lang.IllegalStateException
 import java.util.*
 
 /**
@@ -12,18 +15,25 @@ import java.util.*
 object QuestManager {
     private val allQuests: MutableList<IQuestBuilder> = mutableListOf()
 
-    private val _activeQuests: MutableList<IQuest> = mutableListOf()
+    private lateinit var _activeQuests: MutableList<IQuest>
     val activeQuests: List<IQuest>
-        get() = _activeQuests
+        get() {
+            if (!::_activeQuests.isInitialized) {
+                _activeQuests = loadActiveQuests()
+            }
+            return _activeQuests
+        }
 
     fun skipQuest(quest: IQuest) {
         _activeQuests.remove(quest)
+        storeActiveQuests()
         val now = Calendar.getInstance().time
         AchievementStore.addEntry(Entry(now, Action(quest.tag, "skipped")))
     }
 
     fun finishQuest(quest: IQuest) {
         _activeQuests.remove(quest)
+        storeActiveQuests()
         val now = Calendar.getInstance().time
         AchievementStore.addEntry(Entry(now, Action(quest.tag, "finished")))
     }
@@ -35,6 +45,7 @@ object QuestManager {
             .map {
                 it.createQuest() }
         _activeQuests.addAll(newQuests)
+        storeActiveQuests()
         newQuests.forEach{
             val now = Calendar.getInstance().time
             AchievementStore.addEntry(Entry(now, Action(it.tag,  "activated")))
@@ -42,10 +53,22 @@ object QuestManager {
     }
 
     private fun storeActiveQuests() {
-
+        val serialized = _activeQuests.map { it as ISerializedQuest }
+        Paper.book().write(Storage.ACTIVE_QUESTS, serialized)
     }
 
-    fun updateQuests() = _activeQuests.forEach{ it.check() }
+    private fun loadActiveQuests(): MutableList<IQuest> {
+        val serialized = Paper.book().read<MutableList<ISerializedQuest>>(Storage.ACTIVE_QUESTS, mutableListOf())
+        return serialized.map {
+            val builder = allQuests.find { builder -> builder.tag == it.tag }
+            builder?.fromSerialized(it) ?: throw IllegalStateException("")
+        }.toMutableList()
+    }
+
+    fun updateQuests() {
+        _activeQuests.forEach{ it.check() }
+        storeActiveQuests()
+    }
     fun loadModule(module: IQuestModule) = module.quests.forEach { register(it)}
     fun register(element: IQuestBuilder) = allQuests.add(element)
 }
