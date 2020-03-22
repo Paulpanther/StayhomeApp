@@ -16,5 +16,12 @@
     <string name="core_couch_potato_3_title"> Homebody </string>
     <string name="core_couch_potato_3_desc">You did not leave your house unnecessarily for 7 days in a row!</string>
 
+    <string name="work_night_owl_title"> Night Owl </string>
+    <string name="work_night_owl_desc">You used the app between 2 a.m, and 5 a.m.</string>
+    <string name="work_night_owl_explanation"> IT people work at night and so do you!</string>
+
+    <string name="education_genius_title"> Genius </string>
+    <string name="education_genius_desc">You did 5 quests to learn something like reading a book or checking the news</string>
+    <string name="education_genius_explanation">If you stay at home, you can use the time to get smarter, right?</string>
 
 </resources>

@@ -13,6 +13,6 @@ object WorkModule: IModule {
 
     )
     override val achievements: List<IAchievement> = listOf(
-
+        NightOwlAchievement
     )
 }

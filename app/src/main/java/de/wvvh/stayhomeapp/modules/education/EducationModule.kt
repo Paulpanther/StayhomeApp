@@ -13,6 +13,6 @@ object EducationModule: IModule {
 
     )
     override val achievements: List<IAchievement> = listOf(
-
+        GeniusAchievement
     )
 }
