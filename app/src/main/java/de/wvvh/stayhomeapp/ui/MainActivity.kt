@@ -10,6 +10,7 @@ import de.wvvh.stayhomeapp.R
 import de.wvvh.stayhomeapp.achievements.AchievementStore
 import de.wvvh.stayhomeapp.modules.ModuleLoader
 import de.wvvh.stayhomeapp.modules.Modules
+import de.wvvh.stayhomeapp.quests.QuestManager
 import de.wvvh.stayhomeapp.ui.main.SectionsPagerAdapter
 import de.wvvh.stayhomeapp.wifi.WifiHelper
 import io.paperdb.Paper
@@ -18,8 +19,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Do this before view loads
+        setContentView(R.layout.activity_main)
+        val sectionsPagerAdapter = SectionsPagerAdapter(
+            this,
+            supportFragmentManager,
+            BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+        )
+        val viewPager: ViewPager = findViewById(R.id.view_pager)
+        viewPager.adapter = sectionsPagerAdapter
+        val tabs: TabLayout = findViewById(R.id.tabs)
+        tabs.setupWithViewPager(viewPager)
 
         Paper.init(applicationContext)
         if (InitialLaunch.isFirstLaunch()) {
@@ -34,19 +43,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         AchievementStore.notifyAchievements()
-
-        // Load view
-
-        setContentView(R.layout.activity_main)
-        val sectionsPagerAdapter = SectionsPagerAdapter(
-            this,
-            supportFragmentManager,
-            BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-        )
-        val viewPager: ViewPager = findViewById(R.id.view_pager)
-        viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = findViewById(R.id.tabs)
-        tabs.setupWithViewPager(viewPager)
-
+        QuestManager.loadIntoActive()
     }
 }

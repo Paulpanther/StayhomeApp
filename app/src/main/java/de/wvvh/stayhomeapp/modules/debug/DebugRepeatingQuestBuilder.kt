@@ -30,6 +30,6 @@ object DebugBackflipQuestBuilder: DebugRepeatingQuestBuilder("debug.backflip",3)
         override val titleResource = R.string.quest_debug_title
         override val userVerified = true
         override var solved = false
-        override fun check() { }
+        override fun check(log: ActionLog) { }
     }
 }

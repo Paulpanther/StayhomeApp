@@ -32,6 +32,8 @@ object AchievementStore {
             field = value
         }
 
+    fun isAchievementFinished(achievement: IAchievement) = finishedAchievements.contains(achievement)
+
     init {
         _log.addObserver(this::notifyAchievements)
     }

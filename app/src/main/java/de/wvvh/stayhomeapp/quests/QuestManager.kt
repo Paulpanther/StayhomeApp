@@ -2,10 +2,12 @@ package de.wvvh.stayhomeapp.quests
 
 import de.wvvh.stayhomeapp.achievements.AchievementStore
 import de.wvvh.stayhomeapp.actionLogging.Action
+import de.wvvh.stayhomeapp.actionLogging.ActionLog
 import de.wvvh.stayhomeapp.actionLogging.Entry
 import de.wvvh.stayhomeapp.util.Storage
 import io.paperdb.Paper
 import java.lang.IllegalStateException
+import de.wvvh.stayhomeapp.user.UserDataStore
 import java.util.*
 
 /**
@@ -24,18 +26,25 @@ object QuestManager {
             return _activeQuests
         }
 
+    init {
+        AchievementStore.log.addObserver(this::updateQuests)
+    }
+
     fun skipQuest(quest: IQuest) {
-        _activeQuests.remove(quest)
-        storeActiveQuests()
-        val now = Calendar.getInstance().time
-        AchievementStore.addEntry(Entry(now, Action(quest.tag, "skipped")))
+        if(_activeQuests.remove(quest)) {
+            storeActiveQuests()
+            val now = Calendar.getInstance().time
+            AchievementStore.addEntry(Entry(now, Action(quest.tag, "skipped")))
+        }
     }
 
     fun finishQuest(quest: IQuest) {
-        _activeQuests.remove(quest)
-        storeActiveQuests()
-        val now = Calendar.getInstance().time
-        AchievementStore.addEntry(Entry(now, Action(quest.tag, "finished")))
+        if(_activeQuests.remove(quest)) {
+            storeActiveQuests()
+            val now = Calendar.getInstance().time
+            AchievementStore.addEntry(Entry(now, Action(quest.tag, "finished")))
+            UserDataStore.user.xp += quest.exp
+        }
     }
 
     fun loadIntoActive() {

@@ -23,7 +23,7 @@ interface IQuest : ISerializedQuest {
      */
     val userVerified: Boolean
 
-    fun check()
+    fun check(log: ActionLog)
 }
 
 abstract class IQuestBuilder {

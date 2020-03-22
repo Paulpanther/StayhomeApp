@@ -18,7 +18,8 @@ sealed class StayHomeStreak(streakLength: Int): StreakAchievement(streakLength) 
 
         val aggregator: Aggregator = IntervalCountAggregator(log, startDate, currentDate)
 
-        return aggregator.aggregate(Actions.LEFT_HOME) == 0
+        return (aggregator.aggregate(Actions.LEFT_HOME) == 0
+                && aggregator.aggregate(Actions.FIRST_APP_START) == 0)
     }
 
     override val hidden = false
