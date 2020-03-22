@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
+    style="@style/Widget.MaterialComponents.CardView"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_margin="8dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:clickable="true"
+        android:onClick="listenerList"
+        android:id="@+id/main_constraint_oac"
+        >
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/headline"
+            style="@style/MaterialAlertDialog.MaterialComponents.Title.Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Headline"
+            app:layout_constraintStart_toEndOf="@+id/checkBox"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="Description text, telling the user mroe precisly what this selection means"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/checkBox"
+            app:layout_constraintTop_toBottomOf="@+id/headline" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
