@@ -30,7 +30,7 @@ object UserDataStore {
 data class UserData(
     val name: String,
     private var _xp: Float = 0f,
-    private var _icon: Int = R.drawable.ic_icon_stubenhocker_3) {
+    private var _icon: Int = R.drawable.ic_icon_user_2) {
 
     companion object {
         fun load(): UserData? {
