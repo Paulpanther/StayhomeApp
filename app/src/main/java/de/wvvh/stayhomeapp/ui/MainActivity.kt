@@ -2,14 +2,14 @@ package de.wvvh.stayhomeapp.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.telephony.CellIdentity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import de.wvvh.stayhomeapp.R
-import de.wvvh.stayhomeapp.achievements.AchievementModules
 import de.wvvh.stayhomeapp.achievements.AchievementStore
+import de.wvvh.stayhomeapp.achievements.ModuleLoader
+import de.wvvh.stayhomeapp.achievements.Modules
 import de.wvvh.stayhomeapp.ui.main.SectionsPagerAdapter
 import de.wvvh.stayhomeapp.user.UserData
 import de.wvvh.stayhomeapp.util.Storage
@@ -34,14 +34,12 @@ class MainActivity : AppCompatActivity() {
 
         Paper.init(applicationContext)
 
+        ModuleLoader.loadModules(Modules)
         WifiHelper.enqueueWorker()
         if (WifiHelper.isJustReturnedToHome()) {
             startActivity(Intent(this, NotHomeQuestionActivity::class.java))
         }
 
-        loadModules()
         AchievementStore.notifyAchievements()
     }
-
-    private fun loadModules() = AchievementModules.modules.forEach { AchievementStore.loadModule(it) }
 }
