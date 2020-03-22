@@ -18,6 +18,9 @@ import kotlinx.android.synthetic.main.fragment_main_quest.view.*
  */
 
 class QuestFragment: Fragment() {
+
+    lateinit var adapter: QuestAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,14 +29,22 @@ class QuestFragment: Fragment() {
 
 
         val questList: RecyclerView = root.quest_list
-        questList.adapter = QuestAdapter(
+
+        adapter = QuestAdapter(
             QuestManager.activeQuests,
             UserDataStore.user,
             this.context)
+        questList.adapter = adapter
         questList.layoutManager = LinearLayoutManager(
             context,
             RecyclerView.VERTICAL,
             false)
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // TODO: observe UserDataStore instead
+        if(::adapter.isInitialized) adapter.userData = UserDataStore.user
     }
 }
