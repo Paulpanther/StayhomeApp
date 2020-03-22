@@ -4,7 +4,6 @@ import de.wvvh.stayhomeapp.achievements.AchievementStore
 import de.wvvh.stayhomeapp.actionLogging.Action
 import de.wvvh.stayhomeapp.actionLogging.ActionLog
 import de.wvvh.stayhomeapp.actionLogging.Entry
-import de.wvvh.stayhomeapp.user.UserData
 import de.wvvh.stayhomeapp.user.UserDataStore
 import java.util.*
 
@@ -27,7 +26,7 @@ object QuestManager {
         if(_activeQuests.remove(quest)) {
             storeActiveQuests()
             val now = Calendar.getInstance().time
-            AchievementStore.addEntry(Entry(now, Action(quest.tag, ":skipped")))
+            AchievementStore.addEntry(Entry(now, Action(quest.tag, "skipped")))
         }
     }
 
@@ -35,7 +34,7 @@ object QuestManager {
         if(_activeQuests.remove(quest)) {
             storeActiveQuests()
             val now = Calendar.getInstance().time
-            AchievementStore.addEntry(Entry(now, Action(quest.tag, ":finished")))
+            AchievementStore.addEntry(Entry(now, Action(quest.tag, "finished")))
             UserDataStore.user.xp += quest.exp
         }
     }
@@ -49,7 +48,7 @@ object QuestManager {
         _activeQuests.addAll(newQuests)
         newQuests.forEach{
             val now = Calendar.getInstance().time
-            AchievementStore.addEntry(Entry(now, Action(it.tag,  ":activated")))
+            AchievementStore.addEntry(Entry(now, Action(it.tag,  "activated")))
         }
     }
 

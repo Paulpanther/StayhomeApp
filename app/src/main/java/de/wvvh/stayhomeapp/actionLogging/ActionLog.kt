@@ -6,7 +6,16 @@ import java.util.*
 data class Entry(val date: Date, val action: Action)
 
 class Action(val actionString: String): CharSequence by actionString {
-    constructor(tag: String, event: String): this(tag + event)
+    constructor(tag: String, event: String): this("$tag:$event")
+
+    fun getTag(): String {
+        return actionString.split(":").first()
+    }
+
+    fun getEvent(): String {
+        return actionString.split(":").last()
+    }
+
     override fun toString() = actionString
     override fun hashCode(): Int = actionString.hashCode()
     override fun equals(other: Any?): Boolean {

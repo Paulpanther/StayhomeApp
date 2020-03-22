@@ -24,8 +24,6 @@ class QuestFragment: Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_main_quest, container, false)
 
-        // TODO: remove
-        UserDataStore.createUser("No Name")
 
         val questList: RecyclerView = root.quest_list
         questList.adapter = QuestAdapter(

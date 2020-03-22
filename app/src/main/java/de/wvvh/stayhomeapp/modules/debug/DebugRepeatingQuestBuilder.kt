@@ -1,7 +1,6 @@
 package de.wvvh.stayhomeapp.modules.debug
 
 import de.wvvh.stayhomeapp.R
-import de.wvvh.stayhomeapp.actionLogging.Action
 import de.wvvh.stayhomeapp.actionLogging.ActionLog
 import de.wvvh.stayhomeapp.actionLogging.IntervalCountAggregator
 import de.wvvh.stayhomeapp.quests.IQuest
