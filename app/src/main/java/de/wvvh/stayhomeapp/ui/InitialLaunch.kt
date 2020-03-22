@@ -17,15 +17,10 @@ class InitialLaunch : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    public fun updateWifi(){
-        //var tv: TextView = findViewById<TextView>(R.id.wifi_name)
-        //tv.setText(Math.random().toString())
+    public fun setHomeWifi(view: View){
+        //TODO: paul, add call here
     }
     public fun openWiFi(view: View){
-        startActivity( Intent(Settings.ACTION_WIFI_SETTINGS));
-    }
-    override fun onResume(){
-        super.onResume()
-        updateWifi()
+        startActivity( Intent(Settings.ACTION_WIFI_SETTINGS))
     }
 }
