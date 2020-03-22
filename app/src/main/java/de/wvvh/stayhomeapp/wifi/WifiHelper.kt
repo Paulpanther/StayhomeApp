@@ -12,20 +12,32 @@ import java.util.concurrent.TimeUnit
 
 object WifiHelper {
 
-    fun isJustReturnedToHome(c: Context): Boolean {
-        val connections = Paper.book().read<List<Connection>>(Storage.CONNECTIONS, mutableListOf())
+    fun isJustReturnedToHome() = getLastUnquestionedLeave() != null
+
+    fun getLastUnquestionedLeave(): Connection? {
+        return Paper.book().read<Connection>(Storage.LAST_UNQUESTIONED_LEAVE)
+    }
+
+    fun answeredQuestion() {
+        Paper.book().delete(Storage.LAST_UNQUESTIONED_LEAVE)
+    }
+
+    fun updateConnections(newConnection: Connection): Boolean {
+        val connections = Paper.book().read<MutableList<Connection>>(Storage.CONNECTIONS, mutableListOf())
         val home = Paper.book().read<Int>(Storage.HOME_WIFI)
 
-        for (i in connections.size - 1 downTo 1) {
-            val current = connections[i]
-            val prev = connections[i - 1]
-            if (!current.answeredQuestion
-                && current.id == home
-                && prev.id != home) {
-                return true
+        var wasLeft = false
+
+        if (connections.isNotEmpty()) {
+            if (connections.last().id != home && newConnection.id == home) {
+                Paper.book().write(Storage.LAST_UNQUESTIONED_LEAVE, newConnection)
+                wasLeft = true
             }
         }
-        return false
+        connections.add(newConnection)
+        Paper.book().write(Storage.CONNECTIONS, connections)
+
+        return wasLeft
     }
 
     fun enqueueWorker() {
@@ -38,16 +50,10 @@ object WifiHelper {
         workManager.enqueue(work)
     }
 
-    fun startHomeQuestionActivityIfNeeded(c: Context) {
-        if (isJustReturnedToHome(c)) {
-            val intent = Intent(c, NotHomeQuestionActivity::class.java)
-            c.startActivity(intent)
-        }
-    }
-
-    fun storeCurrentId(c: Context) {
+    fun storeCurrentId(c: Context): Boolean {
         val manager = c.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
         val id = manager.connectionInfo.networkId
         Paper.book().write(Storage.HOME_WIFI, id)
+        return true
     }
 }

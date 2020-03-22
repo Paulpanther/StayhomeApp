@@ -2,7 +2,6 @@ package de.wvvh.stayhomeapp.modules
 
 import de.wvvh.stayhomeapp.achievements.IAchievementModule
 import de.wvvh.stayhomeapp.modules.core.CoreModule
-import de.wvvh.stayhomeapp.modules.core.DebugModule
 import de.wvvh.stayhomeapp.quests.IQuestModule
 
 /**
