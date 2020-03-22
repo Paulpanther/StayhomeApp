@@ -1,5 +1,7 @@
 package de.wvvh.stayhomeapp.ui.main.achievements
 
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +10,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import de.wvvh.stayhomeapp.R
+import de.wvvh.stayhomeapp.achievements.AchievementStore
 import de.wvvh.stayhomeapp.achievements.IAchievement
 import kotlinx.android.synthetic.main.achievement_card.view.*
 
@@ -36,7 +39,7 @@ class AchievementAdapter(
         holder.title.setText(currentItem.titleResource)
         holder.desc.setText(currentItem.descriptionResource)
         holder.explanation.setText(currentItem.explanationResource)
-        holder.bind(achievementList[position], listener);
+        holder.bind(achievementList[position], listener)
     }
 
     override fun getItemCount() = achievementList.size
@@ -51,6 +54,12 @@ class AchievementAdapter(
         {
             itemView.setOnClickListener {
                 listener.onClick(achievement, this)
+            }
+
+            if(!AchievementStore.isAchievementFinished(achievement)) {
+                val matrix = ColorMatrix()
+                matrix.setSaturation(0f)
+                icon.colorFilter = ColorMatrixColorFilter(matrix)
             }
         }
     }

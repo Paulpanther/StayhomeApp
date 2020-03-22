@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import de.wvvh.stayhomeapp.R
 import de.wvvh.stayhomeapp.actionLogging.Action
+import de.wvvh.stayhomeapp.actionLogging.ActionLog
 import de.wvvh.stayhomeapp.quests.IQuest
 import de.wvvh.stayhomeapp.quests.QuestManager
 import de.wvvh.stayhomeapp.user.UserData
@@ -23,12 +24,10 @@ import kotlinx.android.synthetic.main.quest_card.view.*
  * @date 21.03.2020
  */
 class QuestAdapter(
-    list: List<IQuest>,
+    private val questList: List<IQuest>,
     private val userData: UserData,
     private val context: Context?)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    private val questList: List<IQuest> = listOf(EmptyQuest()) + list
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
@@ -46,10 +45,9 @@ class QuestAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val currentItem = questList[position]
-
         when(holder) {
             is QuestViewHolder -> {
+                val currentItem = questList[position - 1]
                 holder.title.setText(currentItem.titleResource)
                 holder.desc.setText(currentItem.descriptionResource)
                 val expString = context?.getString(R.string.exp, currentItem.exp)
@@ -66,7 +64,7 @@ class QuestAdapter(
         }
     }
 
-    override fun getItemCount() = questList.size
+    override fun getItemCount() = questList.size + 1
 
     class QuestViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.quest_title
@@ -80,6 +78,12 @@ class QuestAdapter(
                 QuestManager.skipQuest(quest)
                 parent.notifyItemRemoved(position)
             }
+
+            // TODO: button does not finish quest but only marks it as done. User needs to collect the exp by click
+            finish.setOnClickListener {
+                QuestManager.finishQuest(quest)
+                parent.notifyItemRemoved(position)
+            }
         }
     }
 
@@ -88,15 +92,4 @@ class QuestAdapter(
         val level: TextView = itemView.user_level
         val name: TextView = itemView.user_name
     }
-}
-
-class EmptyQuest: IQuest {
-    override val tag: String = "debug.emptyQuest"
-    override val exp = 0
-    override val titleResource = 0
-    override val descriptionResource = 0
-    override val userVerified = false
-    override var solved = false
-
-    override fun check() { }
 }

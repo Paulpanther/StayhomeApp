@@ -21,7 +21,7 @@ interface IQuest {
     val userVerified: Boolean
     var solved: Boolean
 
-    fun check()
+    fun check(log: ActionLog)
 }
 
 abstract class IQuestBuilder {

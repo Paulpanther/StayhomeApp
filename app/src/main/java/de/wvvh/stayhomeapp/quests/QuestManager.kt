@@ -2,7 +2,10 @@ package de.wvvh.stayhomeapp.quests
 
 import de.wvvh.stayhomeapp.achievements.AchievementStore
 import de.wvvh.stayhomeapp.actionLogging.Action
+import de.wvvh.stayhomeapp.actionLogging.ActionLog
 import de.wvvh.stayhomeapp.actionLogging.Entry
+import de.wvvh.stayhomeapp.user.UserData
+import de.wvvh.stayhomeapp.user.UserDataStore
 import java.util.*
 
 /**
@@ -16,18 +19,25 @@ object QuestManager {
     val activeQuests: List<IQuest>
         get() = _activeQuests
 
+    init {
+        AchievementStore.log.addObserver(this::updateQuests)
+    }
+
     fun skipQuest(quest: IQuest) {
-        _activeQuests.remove(quest)
-        storeActiveQuests()
-        val now = Calendar.getInstance().time
-        AchievementStore.addEntry(Entry(now, Action(quest.tag, ":skipped")))
+        if(_activeQuests.remove(quest)) {
+            storeActiveQuests()
+            val now = Calendar.getInstance().time
+            AchievementStore.addEntry(Entry(now, Action(quest.tag, ":skipped")))
+        }
     }
 
     fun finishQuest(quest: IQuest) {
-        _activeQuests.remove(quest)
-        storeActiveQuests()
-        val now = Calendar.getInstance().time
-        AchievementStore.addEntry(Entry(now, Action(quest.tag, ":finished")))
+        if(_activeQuests.remove(quest)) {
+            storeActiveQuests()
+            val now = Calendar.getInstance().time
+            AchievementStore.addEntry(Entry(now, Action(quest.tag, ":finished")))
+            UserDataStore.user.xp += quest.exp
+        }
     }
 
     fun loadIntoActive() {
@@ -45,7 +55,7 @@ object QuestManager {
 
     private fun storeActiveQuests() {}
 
-    fun updateQuests() = _activeQuests.forEach{ it.check() }
+    fun updateQuests(log: ActionLog) = _activeQuests.forEach{ it.check(log) }
     fun loadModule(module: IQuestModule) = module.quests.forEach { register(it)}
     fun register(element: IQuestBuilder) = allQuests.add(element)
 }

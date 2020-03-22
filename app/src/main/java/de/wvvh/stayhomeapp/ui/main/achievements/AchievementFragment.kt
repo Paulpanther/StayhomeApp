@@ -6,20 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import de.wvvh.stayhomeapp.R
 import de.wvvh.stayhomeapp.achievements.AchievementStore
 import de.wvvh.stayhomeapp.achievements.IAchievement
-import de.wvvh.stayhomeapp.ui.main.TabFragment
-import kotlinx.android.synthetic.main.fragment_main_achievement.*
 import kotlinx.android.synthetic.main.fragment_main_achievement.view.*
 
 /**
  * @author Antonius Naumann
  * @date 21.03.2020
  */
-class AchievementFragment: TabFragment() {
+class AchievementFragment: Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

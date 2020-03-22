@@ -50,8 +50,9 @@ data class UserData(
         store()
     }
 
+    private val xpPerLevel = 1000
     val level
-        get() = xp.toInt()
+        get() = (xp / xpPerLevel).toInt()
 
     private fun store() {
         Paper.book().write(Storage.USER_DATA, this)

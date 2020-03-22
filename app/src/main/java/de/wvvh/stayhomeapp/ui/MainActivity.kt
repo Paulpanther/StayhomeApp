@@ -10,6 +10,7 @@ import de.wvvh.stayhomeapp.R
 import de.wvvh.stayhomeapp.achievements.AchievementStore
 import de.wvvh.stayhomeapp.modules.ModuleLoader
 import de.wvvh.stayhomeapp.modules.Modules
+import de.wvvh.stayhomeapp.quests.QuestManager
 import de.wvvh.stayhomeapp.ui.main.SectionsPagerAdapter
 import de.wvvh.stayhomeapp.wifi.WifiHelper
 import io.paperdb.Paper
@@ -42,5 +43,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         AchievementStore.notifyAchievements()
+        QuestManager.loadIntoActive()
     }
 }
