@@ -1,5 +1,6 @@
 package de.wvvh.stayhomeapp.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -7,6 +8,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import de.wvvh.stayhomeapp.R
+import de.wvvh.stayhomeapp.wifi.WifiHelper
 
 class NotHomeQuestionActivity : AppCompatActivity() {
 
@@ -32,5 +34,10 @@ class NotHomeQuestionActivity : AppCompatActivity() {
     public fun printSelectedVal(view: View){
         var temp: TextView = findViewById(R.id.temp_out)
         temp.setText(findViewById<RadioButton>(rg.checkedRadioButtonId).text)
+    }
+
+    fun userAnsweredQuestion() {
+        WifiHelper.answeredQuestion()
+        startActivity(Intent(this, MainActivity::class.java))
     }
 }

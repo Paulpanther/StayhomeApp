@@ -1,6 +1,8 @@
 package de.wvvh.stayhomeapp.achievements
 
 import de.wvvh.stayhomeapp.actionLogging.ActionLog
+import de.wvvh.stayhomeapp.util.Storage
+import io.paperdb.Paper
 
 /**
  * @author Antonius Naumann
@@ -31,4 +33,20 @@ interface IAchievement {
  */
 interface IAchievementModule {
     val achievements: List<IAchievement>
+}
+
+object FinishedAchievementLoader {
+
+    fun fromAll(all: List<IAchievement>): List<IAchievement> {
+        val finishedNames = Paper.book().read<MutableList<String>>(Storage.FINISHED_ACHIEVEMENTS, mutableListOf())
+        return all.filter {
+            finishedNames.contains(it::class.qualifiedName)
+        }
+    }
+
+    fun write(finished: List<IAchievement>) {
+        Paper.book().write(Storage.FINISHED_ACHIEVEMENTS, finished.map {
+            it::class.qualifiedName
+        }.toMutableList())
+    }
 }

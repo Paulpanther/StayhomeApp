@@ -4,6 +4,9 @@ import java.util.*
 
 enum class Action {
     LEFT_HOME,
+    LEFT_HOME_STROLL,
+
+    DEBUG_BACKFLIP
 }
 
 data class Entry(val date: Date, val action: Action)
@@ -14,7 +17,7 @@ data class Entry(val date: Date, val action: Action)
  * @date 21.03.2020
  */
 class ActionLog(private val log: MutableList<Entry> = mutableListOf()): List<Entry> by log {
-    private val observers: MutableList<(ActionLog) -> Unit> = mutableListOf();
+    private val observers: MutableList<(ActionLog) -> Unit> = mutableListOf()
 
     fun add(element: Entry) {
         log.add(element)

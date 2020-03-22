@@ -15,12 +15,13 @@
         <!-- Media -->
         <ImageView
             android:id="@+id/achievement_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="196dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
+            android:layout_margin="16dp"
+            android:layout_marginTop="32dp"
             android:contentDescription="Achievement Picture"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_launcher_background"
             tools:ignore="HardcodedText" />
 
@@ -30,7 +31,6 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Title, secondary and supporting text -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,8 +45,7 @@
                 android:id="@+id/achievement_description"
                 android:text="Explanation how to get this achievement or atleast a hint"
                 style="@style/TextAppearance.MaterialComponents.Body2"
-                tools:ignore="HardcodedText"
-                android:visibility="gone"/>
+                tools:ignore="HardcodedText" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,8 +54,7 @@
                 android:text="Information why this behaviour could be useful to tackle the COVID-19 crisis"
                 style="@style/TextAppearance.MaterialComponents.Body2"
                 android:textColor="?android:attr/textColorSecondary"
-                tools:ignore="HardcodedText"
-                android:visibility="gone"/>
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
     </LinearLayout>
