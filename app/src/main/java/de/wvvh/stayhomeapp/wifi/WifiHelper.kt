@@ -45,9 +45,14 @@ object WifiHelper {
         }
     }
 
-    fun storeCurrentId(c: Context) {
+    fun storeCurrentId(c: Context): Boolean {
         val manager = c.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
         val id = manager.connectionInfo.networkId
-        Paper.book().write(Storage.HOME_WIFI, id)
+        return if (id == -1) {
+            false
+        } else {
+            Paper.book().write(Storage.HOME_WIFI, id)
+            true
+        }
     }
 }
