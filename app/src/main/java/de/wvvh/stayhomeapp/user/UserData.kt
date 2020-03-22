@@ -50,9 +50,8 @@ data class UserData(
         store()
     }
 
-    fun lvl(): Int {
-        return xp.toInt()
-    }
+    val level
+        get() = xp.toInt()
 
     private fun store() {
         Paper.book().write(Storage.USER_DATA, this)

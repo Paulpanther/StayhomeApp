@@ -3,4 +3,6 @@
     <string name="quest_sample_desc">Complete this mighty quest for epic loot by having an awesome adventure.</string>
     <string name="quest_sample_2_title"> User-Verified Quest </string>
     <string name="quest_sample_2_desc">We have no idea how to track your progress for this quest, so you have to mark this quest as done manually. \nYou ain\'t cheating anyways, right?</string>
+    <string name="quest_debug_title"> Warm-Up </string>
+    <string name="quest_debug_desc">Just do a little backflip. Don\'t worry, we will ask you to backflip again in 3 minutes</string>
 </resources>

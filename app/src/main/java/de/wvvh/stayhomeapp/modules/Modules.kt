@@ -2,6 +2,7 @@ package de.wvvh.stayhomeapp.modules
 
 import de.wvvh.stayhomeapp.achievements.IAchievementModule
 import de.wvvh.stayhomeapp.modules.core.CoreModule
+import de.wvvh.stayhomeapp.modules.core.DebugModule
 import de.wvvh.stayhomeapp.quests.IQuestModule
 
 /**
@@ -9,8 +10,8 @@ import de.wvvh.stayhomeapp.quests.IQuestModule
  * @date 21.03.2020
  */
 object Modules: List<IModule> by listOf(
-    CoreModule
+    CoreModule,
+    DebugModule
 )
 
-interface IModule: IQuestModule,
-    IAchievementModule
+interface IModule: IQuestModule, IAchievementModule

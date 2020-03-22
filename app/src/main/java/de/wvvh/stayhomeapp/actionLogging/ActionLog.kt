@@ -2,14 +2,13 @@ package de.wvvh.stayhomeapp.actionLogging
 
 import java.util.*
 
-enum class Action {
-    LEFT_HOME,
-    LEFT_HOME_STROLL,
+data class Entry(val date: Date, val action: Action)
 
-    DEBUG_BACKFLIP
+class Action(val actionString: String): CharSequence by actionString {
+    constructor(tag: String, event: String): this(tag + event)
+    override fun toString() = actionString
+    override fun hashCode(): Int = actionString.hashCode()
 }
-
-data class Entry(val date: Date = Calendar.getInstance().time, val action: Action)
 
 /**
  * @author Antonius Naumann
@@ -18,6 +17,12 @@ data class Entry(val date: Date = Calendar.getInstance().time, val action: Actio
  */
 class ActionLog(private val log: MutableList<Entry> = mutableListOf()): List<Entry> by log {
     private val observers: MutableList<(ActionLog) -> Unit> = mutableListOf()
+
+    companion object {
+        fun buildAction(vararg tags: String): String {
+            return tags.joinToString(":")
+        }
+    }
 
     fun add(element: Entry) {
         log.add(element)

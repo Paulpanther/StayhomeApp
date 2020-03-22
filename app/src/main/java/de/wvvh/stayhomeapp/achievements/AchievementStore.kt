@@ -12,7 +12,7 @@ import io.paperdb.Paper
  */
 object AchievementStore {
     private val _log = LogLoader.read()
-    val log: List<Entry>
+    val log: ActionLog
         get() = _log
 
     private val _achievements: MutableList<IAchievement> = mutableListOf()

@@ -2,10 +2,7 @@ package de.wvvh.stayhomeapp.modules.core
 
 import de.wvvh.stayhomeapp.R
 import de.wvvh.stayhomeapp.achievements.StreakAchievement
-import de.wvvh.stayhomeapp.actionLogging.Action
-import de.wvvh.stayhomeapp.actionLogging.ActionLog
-import de.wvvh.stayhomeapp.actionLogging.Aggregator
-import de.wvvh.stayhomeapp.actionLogging.IntervalCountAggregator
+import de.wvvh.stayhomeapp.actionLogging.*
 import java.util.*
 
 /**
@@ -21,7 +18,7 @@ sealed class StayHomeStreak(streakLength: Int): StreakAchievement(streakLength) 
 
         val aggregator: Aggregator = IntervalCountAggregator(log, startDate, currentDate)
 
-        return aggregator.aggregate(Action.LEFT_HOME) == 0
+        return aggregator.aggregate(Actions.LEFT_HOME) == 0
     }
 
     override val hidden = false

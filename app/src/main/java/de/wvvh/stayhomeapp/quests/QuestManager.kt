@@ -1,15 +1,51 @@
 package de.wvvh.stayhomeapp.quests
 
+import de.wvvh.stayhomeapp.achievements.AchievementStore
+import de.wvvh.stayhomeapp.actionLogging.Action
+import de.wvvh.stayhomeapp.actionLogging.Entry
+import java.util.*
+
 /**
  * @author Antonius Naumann
  * @date 22.03.2020
  */
 object QuestManager {
     private val allQuests: MutableList<IQuestBuilder> = mutableListOf()
+
     private val _activeQuests: MutableList<IQuest> = mutableListOf()
     val activeQuests: List<IQuest>
         get() = _activeQuests
 
-    fun loadModule(module: IQuestModule) = module.quests.forEach() { register(it)}
+    fun skipQuest(quest: IQuest) {
+        _activeQuests.remove(quest)
+        storeActiveQuests()
+        val now = Calendar.getInstance().time
+        AchievementStore.addEntry(Entry(now, Action(quest.tag, ":skipped")))
+    }
+
+    fun finishQuest(quest: IQuest) {
+        _activeQuests.remove(quest)
+        storeActiveQuests()
+        val now = Calendar.getInstance().time
+        AchievementStore.addEntry(Entry(now, Action(quest.tag, ":finished")))
+    }
+
+    fun loadIntoActive() {
+        val newQuests = allQuests.filter {
+            val isActive = activeQuests.find { active -> it.tag.toString() == active.tag } != null
+            !isActive && it.checkRequirements(AchievementStore.log) }
+            .map {
+                it.createQuest() }
+        _activeQuests.addAll(newQuests)
+        newQuests.forEach{
+            val now = Calendar.getInstance().time
+            AchievementStore.addEntry(Entry(now, Action(it.tag,  ":activated")))
+        }
+    }
+
+    private fun storeActiveQuests() {}
+
+    fun updateQuests() = _activeQuests.forEach{ it.check() }
+    fun loadModule(module: IQuestModule) = module.quests.forEach { register(it)}
     fun register(element: IQuestBuilder) = allQuests.add(element)
 }
