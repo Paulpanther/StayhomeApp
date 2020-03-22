@@ -10,9 +10,10 @@ import de.wvvh.stayhomeapp.quests.IQuestBuilder
  */
 object SocialModule : IModule {
     override val quests: List<IQuestBuilder> = listOf(
-
+        TalkativeQuestBuilder
     )
     override val achievements: List<IAchievement> = listOf(
-
+        SweetheartAchievement,
+        GuineaPigAchievement
     )
 }

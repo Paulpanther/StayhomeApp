@@ -24,4 +24,11 @@
     <string name="education_genius_desc">You did 5 quests to learn something like reading a book or checking the news</string>
     <string name="education_genius_explanation">If you stay at home, you can use the time to get smarter, right?</string>
 
+    <string name="social_hamster_title"> Guinea Pig </string>
+    <string name="social_hamster_desc">You went to the grocery store and did not buy tons of toilet paper. Nice! </string>
+    <string name="social_hamster_explanation">There is no shortage of food and basic goods. There is no need for panic buying, so stay cool!</string>
+
+    <string name="social_sweetheart_title"> Sweetheart </string>
+    <string name="social_sweetheart_desc">You completed 6 social missions.</string>
+    <string name="social_sweetheart_explanation">Even if we have to stay at home, that does not mean we have to stay isolated. Social activity keeps you happy!</string>
 </resources>

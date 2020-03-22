@@ -4,12 +4,11 @@ import de.wvvh.stayhomeapp.R
 import de.wvvh.stayhomeapp.achievements.IAchievement
 import de.wvvh.stayhomeapp.actionLogging.ActionLog
 
+// TODO: add logic to evaluate
 /**
  * @author Antonius Naumann
  * @date 22.03.2020
  */
-
-
 object NightOwlAchievement: IAchievement {
     override val imageResource: Int = R.drawable.ic_icon_nachteule
     override val titleResource: Int = R.string.work_night_owl_title

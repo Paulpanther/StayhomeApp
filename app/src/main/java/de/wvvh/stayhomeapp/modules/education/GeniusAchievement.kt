@@ -4,6 +4,8 @@ import de.wvvh.stayhomeapp.R
 import de.wvvh.stayhomeapp.achievements.IAchievement
 import de.wvvh.stayhomeapp.actionLogging.ActionLog
 
+
+// TODO: add logic to evaluate
 /**
  * @author Antonius Naumann
  * @date 22.03.2020

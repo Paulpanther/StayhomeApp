@@ -15,13 +15,13 @@ import de.wvvh.stayhomeapp.quests.IQuestModule
  * @date 21.03.2020
  */
 object Modules: List<IModule> by listOf(
+    // DebugModule,
     CoreModule,
     EducationModule,
     HealthModule,
     SelfcareModule,
     SocialModule,
-    WorkModule,
-    DebugModule
+    WorkModule
 )
 
 interface IModule: IQuestModule, IAchievementModule

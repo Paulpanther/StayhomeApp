@@ -5,4 +5,13 @@
     <string name="quest_sample_2_desc">We have no idea how to track your progress for this quest, so you have to mark this quest as done manually. \nYou ain\'t cheating anyways, right?</string>
     <string name="quest_debug_title"> Warm-Up </string>
     <string name="quest_debug_desc">Just do a little backflip. Don\'t worry, we will ask you to backflip again in 3 minutes</string>
+
+    <string name="quest_stroll_title">Walking on sunshine</string>
+    <string name="quest_stroll_desc">Time to take a stroll! Let\'s go outside for walk alone or with people from your household.</string>
+
+    <string name="quest_talkative_title">Talkative</string>
+    <string name="quest_talkative_desc">Call a family member or a friend. Although it is called social distancing, it\'s actually about physical distancing.</string>
+
+    <string name="quest_bookworm_title">Bookworm</string>
+    <string name="quest_bookworm_desc">Grab a tea, lay down on your couch or a comfortable chair and start reading a good book.</string>
 </resources>

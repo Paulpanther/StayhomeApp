@@ -18,5 +18,7 @@ object CoreModule: IModule {
         StayHome7Days
     )
 
-    override val quests: List<IQuestBuilder> = listOf()
+    override val quests: List<IQuestBuilder> = listOf(
+        StrollQuestBuilder
+    )
 }

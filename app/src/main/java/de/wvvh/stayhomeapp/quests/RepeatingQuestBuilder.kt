@@ -9,13 +9,13 @@ import java.util.*
  * @author Antonius Naumann
  * @date 22.03.2020
  */
-abstract class RepeatingQuestBuilder(val action: Action, val daysBetween: Int): IQuestBuilder() {
+abstract class RepeatingQuestBuilder(override val tag: String, val daysBetween: Int): IQuestBuilder() {
     override fun checkRequirements(log: ActionLog): Boolean {
         val calendar = Calendar.getInstance()
         val endDate = calendar.time
         calendar.add(Calendar.DAY_OF_YEAR, -daysBetween)
         val startDate = calendar.time
-        val aggregator = IntervalCountAggregator(log, startDate, endDate)
-        return aggregator.aggregate(action) == 0
+        val aggregator = IntervalCountAggregator(getQuestActions(log), startDate, endDate)
+        return aggregator.aggregate() == 0
     }
 }

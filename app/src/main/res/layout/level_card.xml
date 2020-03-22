@@ -48,7 +48,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_icon_meerschweinchen_entwurf" />
+                app:srcCompat="@drawable/ic_icon_user_3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -10,7 +10,7 @@
 
     <!--Inital Launch-->
     <string name="current_wifi">Home Network</string>
-    <string name="info_why_wifi">This is a very very veeeery long placeholder just to tell you something very interestening. it is so interestening that i have no clue if im spelling interesting correctly, but not interesting enough, that i would check. Now you must be thinking \"WOW that must be a crazy piece of info!!11\" and you are right. We track you.</string>
+    <string name="info_why_wifi">We need to know your home WiFi to know if you are at home. All data collected by this app is exclusively stored locally on your device. </string>
     <string name="home_wifi">Home Network</string>
     <string name="button_open_wifi_settings">WIFI SETTINGS</string>
     <string name="button_confirm_wifi">SET WIFI</string>

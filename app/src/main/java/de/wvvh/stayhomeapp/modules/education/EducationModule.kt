@@ -10,7 +10,7 @@ import de.wvvh.stayhomeapp.quests.IQuestBuilder
  */
 object EducationModule: IModule {
     override val quests: List<IQuestBuilder> = listOf(
-
+        BookwormQuestBuilder
     )
     override val achievements: List<IAchievement> = listOf(
         GeniusAchievement
