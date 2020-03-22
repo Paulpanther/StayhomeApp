@@ -18,16 +18,14 @@ object QuestManager {
 
     fun skipQuest(quest: IQuest) {
         _activeQuests.remove(quest)
-        storeActiveQuests()
         val now = Calendar.getInstance().time
-        AchievementStore.addEntry(Entry(now, Action(quest.tag, ":skipped")))
+        AchievementStore.addEntry(Entry(now, Action(quest.tag, "skipped")))
     }
 
     fun finishQuest(quest: IQuest) {
         _activeQuests.remove(quest)
-        storeActiveQuests()
         val now = Calendar.getInstance().time
-        AchievementStore.addEntry(Entry(now, Action(quest.tag, ":finished")))
+        AchievementStore.addEntry(Entry(now, Action(quest.tag, "finished")))
     }
 
     fun loadIntoActive() {
@@ -39,11 +37,13 @@ object QuestManager {
         _activeQuests.addAll(newQuests)
         newQuests.forEach{
             val now = Calendar.getInstance().time
-            AchievementStore.addEntry(Entry(now, Action(it.tag,  ":activated")))
+            AchievementStore.addEntry(Entry(now, Action(it.tag,  "activated")))
         }
     }
 
-    private fun storeActiveQuests() {}
+    private fun storeActiveQuests() {
+
+    }
 
     fun updateQuests() = _activeQuests.forEach{ it.check() }
     fun loadModule(module: IQuestModule) = module.quests.forEach { register(it)}

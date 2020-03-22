@@ -11,7 +11,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import de.wvvh.stayhomeapp.R
-import de.wvvh.stayhomeapp.actionLogging.Action
 import de.wvvh.stayhomeapp.quests.IQuest
 import de.wvvh.stayhomeapp.quests.QuestManager
 import de.wvvh.stayhomeapp.user.UserData

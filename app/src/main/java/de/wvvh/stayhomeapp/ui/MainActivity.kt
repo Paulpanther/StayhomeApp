@@ -18,16 +18,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val sectionsPagerAdapter = SectionsPagerAdapter(
-            this,
-            supportFragmentManager,
-            BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-        )
-        val viewPager: ViewPager = findViewById(R.id.view_pager)
-        viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = findViewById(R.id.tabs)
-        tabs.setupWithViewPager(viewPager)
+
+        // Do this before view loads
 
         Paper.init(applicationContext)
         if (InitialLaunch.isFirstLaunch()) {
@@ -42,5 +34,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         AchievementStore.notifyAchievements()
+
+        // Load view
+
+        setContentView(R.layout.activity_main)
+        val sectionsPagerAdapter = SectionsPagerAdapter(
+            this,
+            supportFragmentManager,
+            BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+        )
+        val viewPager: ViewPager = findViewById(R.id.view_pager)
+        viewPager.adapter = sectionsPagerAdapter
+        val tabs: TabLayout = findViewById(R.id.tabs)
+        tabs.setupWithViewPager(viewPager)
+
     }
 }

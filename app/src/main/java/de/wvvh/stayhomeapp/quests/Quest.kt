@@ -1,6 +1,5 @@
 package de.wvvh.stayhomeapp.quests
 
-import de.wvvh.stayhomeapp.actionLogging.Action
 import de.wvvh.stayhomeapp.actionLogging.ActionLog
 import de.wvvh.stayhomeapp.actionLogging.Entry
 import de.wvvh.stayhomeapp.actionLogging.TagFilter
@@ -30,11 +29,7 @@ abstract class IQuestBuilder {
     abstract val tag: String
 
     fun getQuestActions(log: ActionLog): List<Entry> {
-        return TagFilter(log).filter(tag).map {
-            val name = it.action
-            val shorterName = Action(name.substring(tag.length + 1))
-            Entry(it.date, shorterName)
-        }
+        return TagFilter(log).filter(tag)
     }
 }
 

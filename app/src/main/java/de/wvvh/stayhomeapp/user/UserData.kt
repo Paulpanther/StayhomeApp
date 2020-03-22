@@ -8,7 +8,17 @@ import io.paperdb.Paper
 object UserDataStore {
     private lateinit var _user: UserData
     val user: UserData
-        get() = _user
+        get() {
+            if (!::_user.isInitialized) {
+                val loaded = UserData.load()
+                if (loaded == null) {
+                    return UserData("No User")
+                } else {
+                    _user = loaded
+                }
+            }
+            return _user
+        }
 
     fun createUser(name: String) {
         if (!::_user.isInitialized) {
@@ -23,7 +33,7 @@ data class UserData(
     private var _icon: Int = R.drawable.ic_icon_stubenhocker_3) {
 
     companion object {
-        fun load(): UserData {
+        fun load(): UserData? {
             return Paper.book().read(Storage.USER_DATA)
         }
 
