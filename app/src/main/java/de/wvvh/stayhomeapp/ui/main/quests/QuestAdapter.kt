@@ -25,9 +25,15 @@ import kotlinx.android.synthetic.main.quest_card.view.*
  */
 class QuestAdapter(
     private val questList: List<IQuest>,
-    private val userData: UserData,
+    _userData: UserData,
     private val context: Context?)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    var userData = _userData
+    set(value) {
+        field = value
+        this.notifyItemChanged(0)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(

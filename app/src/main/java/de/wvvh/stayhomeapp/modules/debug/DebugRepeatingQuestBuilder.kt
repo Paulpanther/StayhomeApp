@@ -25,7 +25,7 @@ abstract class DebugRepeatingQuestBuilder(override val tag: String, val minutesB
 object DebugBackflipQuestBuilder: DebugRepeatingQuestBuilder("debug.backflip",3) {
     override fun createQuest(): IQuest = object: IQuest {
         override val tag = this@DebugBackflipQuestBuilder.tag
-        override val exp = 420
+        override val exp = 1000
         override val descriptionResource = R.string.quest_debug_desc
         override val titleResource = R.string.quest_debug_title
         override val userVerified = true
