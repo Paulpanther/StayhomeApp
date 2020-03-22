@@ -3,6 +3,7 @@ package de.wvvh.stayhomeapp.ui
 import android.os.Bundle
 import android.view.View
 import android.widget.CheckBox
+import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
@@ -37,10 +38,20 @@ class NotHomeQuestionActivity : AppCompatActivity() {
     }
     private fun registerQuestion(id: Int, question: Question){
         map[id] = question
+        findViewById<RadioButton>(id).text = getText(question.title)
     }
 
     private fun getSelectedQuestion(): Question?{
         return map[findViewById<RadioGroup>(R.id.radio_group_questions).checkedRadioButtonId]
     }
 
+    fun onSubmit(view: View) {
+        val question = getSelectedQuestion()
+        if (question != null) {
+            if (!question.necessary) {
+                AchievementStore.addEntry(Entry(action = Actions.LEFT_HOME))
+            }
+            finish()
+        }
+    }
 }

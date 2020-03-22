@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         if (InitialLaunch.isFirstLaunch()) {
             startActivity(Intent(this, BoardingName::class.java))
         }
-        startActivity(Intent(this, NotHomeQuestionActivity::class.java))
 
 
         ModuleLoader.loadModules(Modules)
