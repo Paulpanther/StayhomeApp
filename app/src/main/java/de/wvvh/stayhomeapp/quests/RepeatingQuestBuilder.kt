@@ -1,6 +1,5 @@
 package de.wvvh.stayhomeapp.quests
 
-import de.wvvh.stayhomeapp.actionLogging.Action
 import de.wvvh.stayhomeapp.actionLogging.ActionLog
 import de.wvvh.stayhomeapp.actionLogging.IntervalCountAggregator
 import java.util.*
@@ -9,7 +8,7 @@ import java.util.*
  * @author Antonius Naumann
  * @date 22.03.2020
  */
-abstract class RepeatingQuestBuilder(val action: Action, val daysBetween: Int): IQuestBuilder {
+abstract class RepeatingQuestBuilder(val action: String, val daysBetween: Int): IQuestBuilder() {
     override fun checkRequirements(log: ActionLog): Boolean {
         val calendar = Calendar.getInstance()
         val endDate = calendar.time

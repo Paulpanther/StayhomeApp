@@ -10,6 +10,6 @@ object QuestManager {
     val activeQuests: List<IQuest>
         get() = _activeQuests
 
-    fun loadModule(module: IQuestModule) = module.quests.forEach() { register(it)}
+    fun loadModule(module: IQuestModule) = module.quests.forEach { register(it)}
     fun register(element: IQuestBuilder) = allQuests.add(element)
 }

@@ -11,12 +11,8 @@ import de.wvvh.stayhomeapp.achievements.AchievementStore
 import de.wvvh.stayhomeapp.modules.ModuleLoader
 import de.wvvh.stayhomeapp.modules.Modules
 import de.wvvh.stayhomeapp.ui.main.SectionsPagerAdapter
-import de.wvvh.stayhomeapp.user.UserData
-import de.wvvh.stayhomeapp.util.Storage
-import de.wvvh.stayhomeapp.wifi.Connection
 import de.wvvh.stayhomeapp.wifi.WifiHelper
 import io.paperdb.Paper
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
