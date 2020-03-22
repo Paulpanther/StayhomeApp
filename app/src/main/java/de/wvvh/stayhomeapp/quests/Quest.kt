@@ -15,6 +15,9 @@ interface IQuest {
      * Only use this for quests which are impossible to track.
      */
     val userVerified: Boolean
+    var solved: Boolean
+
+    fun check()
 }
 
 interface IQuestBuilder {
