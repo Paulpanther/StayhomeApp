@@ -60,7 +60,7 @@ data class UserData(
         store()
     }
 
-    private val xpPerLevel = 1000
+    private val xpPerLevel = 1000f
     val level
         get() = (xp / xpPerLevel).toInt()
 

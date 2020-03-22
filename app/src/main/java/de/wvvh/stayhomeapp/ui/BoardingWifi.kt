@@ -9,9 +9,14 @@ import android.provider.Settings
 import android.view.View
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import de.wvvh.stayhomeapp.R
+import de.wvvh.stayhomeapp.achievements.AchievementStore
+import de.wvvh.stayhomeapp.actionLogging.Action
+import de.wvvh.stayhomeapp.actionLogging.Actions
+import de.wvvh.stayhomeapp.actionLogging.Entry
 import de.wvvh.stayhomeapp.util.Storage
 import de.wvvh.stayhomeapp.wifi.WifiHelper
 import io.paperdb.Paper
+import java.util.*
 
 /**
  * Is started on initial launch after [BoardingName], asks for home wifi
@@ -34,6 +39,7 @@ class BoardingWifi : AppCompatActivity() {
         val success = WifiHelper.storeCurrentId(applicationContext)
         if (success) {
             Paper.book().write(Storage.IS_FIRST_LAUNCH, false)
+            AchievementStore.log.add(Entry(Calendar.getInstance().time, Actions.FIRST_APP_START))
             finish()
         } else {
 
