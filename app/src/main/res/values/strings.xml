@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">StayHomeApp</string>
-    <string name="title_activity_default">DefaultActivity</string>
+    <string name="title_activity_default">StandartAktivität</string>
     <string name="tab_quests">Quests</string>
     <string name="tab_achievements">Achievements</string>
 
-    <string name="notification_channel">StayHome App Notifications</string>
-    <string name="notification_not_home_title">You left your home</string>
-    <string name="notification_not_home_text">Open the App to tell us your reasons</string>
+    <string name="notification_channel">StayHome App Benachrichtigungen</string>
+    <string name="notification_not_home_title">YDU hast dein Zuhause verlassen</string>
+    <string name="notification_not_home_text">Öffne die App, um uns mitzuteilen warum</string>
 
-    <string name="skip_quest">Skip</string>
-    <string name="finish_quest">Done</string>
+    <string name="skip_quest">Überspringen</string>
+    <string name="finish_quest">Fertig</string>
     <string name="exp">%1$i EXP</string>
 </resources>
