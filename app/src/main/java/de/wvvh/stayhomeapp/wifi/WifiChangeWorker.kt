@@ -23,11 +23,10 @@ class WifiChangeWorker(context: Context, params: WorkerParameters) : Worker(cont
 
         Log.d(TAG, "Connected to network $id")
 
-        val connections = Paper.book().read<MutableList<Connection>>(Storage.CONNECTIONS, mutableListOf())
-        connections.add(Connection(Calendar.getInstance().timeInMillis, id))
-        Paper.book().write(Storage.CONNECTIONS, connections)
+        val newConnection = Connection(Calendar.getInstance().timeInMillis, id)
+        val returned = WifiHelper.updateConnections(newConnection)
 
-        if (WifiHelper.isJustReturnedToHome(applicationContext)) {
+        if (returned) {
             NotificationHelper.showNotification(
                 applicationContext,
                 R.string.notification_not_home_title,
