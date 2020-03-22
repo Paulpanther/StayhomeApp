@@ -28,9 +28,8 @@ class MainActivity : AppCompatActivity() {
 
         Paper.init(applicationContext)
         loadModules()
-
         if (InitialLaunch.isFirstLaunch()) {
-            startActivity(Intent(this, InitialLaunch::class.java))
+            startActivity(Intent(this, BoardingName::class.java))
         }
     }
 
