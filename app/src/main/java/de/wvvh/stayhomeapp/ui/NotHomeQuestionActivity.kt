@@ -15,6 +15,7 @@ import de.wvvh.stayhomeapp.achievements.AchievementStore
 import de.wvvh.stayhomeapp.actionLogging.Action
 import de.wvvh.stayhomeapp.actionLogging.Actions
 import de.wvvh.stayhomeapp.actionLogging.Entry
+import de.wvvh.stayhomeapp.wifi.WifiHelper
 
 data class Question(val title: Int, val body: Int, val necessary: Boolean)
 
@@ -55,6 +56,7 @@ class NotHomeQuestionActivity : AppCompatActivity() {
             if (!question.necessary) {
                 AchievementStore.addEntry(Entry(action = Actions.LEFT_HOME))
             }
+            WifiHelper.answeredQuestion()
             finish()
         }
     }
