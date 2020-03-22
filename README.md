@@ -4,7 +4,7 @@
 Die StayHome App motiviert dich Zuhause zu bleiben und dabei deinen Alltag spannender zu gestalten. Du bekommst Empfehlungen, wie "rufe mal deine Oma an", "gehe spazieren" oder "Nachrichten lesen" die du freiwillig erledigen kannst. Falls du dich besonders gut verhälst bekommst du Auszeichnungen, zum Beispiel wenn du 3 Tage Zuhause geblieben bist. Dies erkennt die App über dein Heim-Netzwerk und kann dir so hilfreiche Tipps geben, wie du Ausgänge auf ein Minimum reduzieren kannst. Dadurch erweitert die StayHome App nicht nur Social-Distancing, sondern hilft dir auch mit dieser ungewohnten Situation klar zu kommen
 
 #### Features
-- Erkennt das der Benutzer nicht mehr im Home-Wlan ist und sendet eine Benachrichtigung, wenn er wieder nach Hause zurück kehrt. Beim nächsten Öffnen der App wird der Benutzer gefragt, was er getan hat.
+- Erkennt das der Benutzer nicht mehr im Home-Wlan ist und sendet eine Benachrichtigung, wenn er wieder nach Hause zurück kehrt. Beim nächsten Öffnen der App wird der Benutzer gefragt, was er getan hat (Dies is bisher noch experimentell und funktioniert nicht zu 100%).
 - Gibt den Benutzer Quests, die er freiwillig erledigen kann.
 - Falls bestimmte Bedingungen erfüllt sind kann der Benutzer Archievements bekommen, zum Beispiel falls er 3 Tage nicht das Haus verlassen hat.
 
