@@ -1,4 +1,4 @@
-package de.wvvh.stayhomeapp.achievements.core
+package de.wvvh.stayhomeapp.modules.core
 
 import de.wvvh.stayhomeapp.R
 import de.wvvh.stayhomeapp.achievements.StreakAchievement

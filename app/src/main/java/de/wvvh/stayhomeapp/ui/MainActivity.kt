@@ -8,8 +8,8 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import de.wvvh.stayhomeapp.R
 import de.wvvh.stayhomeapp.achievements.AchievementStore
-import de.wvvh.stayhomeapp.achievements.ModuleLoader
-import de.wvvh.stayhomeapp.achievements.Modules
+import de.wvvh.stayhomeapp.modules.ModuleLoader
+import de.wvvh.stayhomeapp.modules.Modules
 import de.wvvh.stayhomeapp.ui.main.SectionsPagerAdapter
 import de.wvvh.stayhomeapp.user.UserData
 import de.wvvh.stayhomeapp.util.Storage
