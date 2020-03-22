@@ -1,10 +1,5 @@
 package de.wvvh.stayhomeapp.achievements
 
-import de.wvvh.stayhomeapp.actionLogging.Action
-import de.wvvh.stayhomeapp.actionLogging.ActionLog
-import de.wvvh.stayhomeapp.actionLogging.Aggregator
-import de.wvvh.stayhomeapp.actionLogging.IntervalCountAggregator
-import java.util.*
 
 /**
  * @author Antonius Naumann

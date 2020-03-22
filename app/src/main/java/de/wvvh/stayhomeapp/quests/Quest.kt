@@ -1,12 +1,15 @@
 package de.wvvh.stayhomeapp.quests
 
 import de.wvvh.stayhomeapp.actionLogging.ActionLog
+import de.wvvh.stayhomeapp.actionLogging.Entry
+import de.wvvh.stayhomeapp.actionLogging.TagFilter
 
 /**
  * @author Antonius Naumann
  * @date 22.03.2020
  */
 interface IQuest {
+    val tag: String
     val exp: Int
     val titleResource: Int
     val descriptionResource: Int
@@ -20,9 +23,18 @@ interface IQuest {
     fun check()
 }
 
-interface IQuestBuilder {
-    fun checkRequirements(log: ActionLog): Boolean
-    fun createQuest(): IQuest
+abstract class IQuestBuilder {
+    abstract fun checkRequirements(log: ActionLog): Boolean
+    abstract fun createQuest(): IQuest
+    abstract fun getTag(): String
+
+    fun getQuestActions(log: ActionLog): List<Entry> {
+        return TagFilter(log).filter(getTag()).map {
+            val name = it.action
+            val shorterName = name.substring(getTag().length + 1)
+            Entry(it.date, shorterName)
+        }
+    }
 }
 
 interface IQuestModule {
