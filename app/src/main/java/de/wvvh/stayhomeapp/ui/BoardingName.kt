@@ -15,5 +15,6 @@ class BoardingName : AppCompatActivity() {
     }
     public fun temp(view: View){
         startActivity(Intent(this, InitialLaunch::class.java))
+        finish()
     }
 }
