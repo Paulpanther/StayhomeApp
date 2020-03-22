@@ -14,6 +14,7 @@ import de.wvvh.stayhomeapp.R
 import de.wvvh.stayhomeapp.actionLogging.Action
 import de.wvvh.stayhomeapp.quests.IQuest
 import de.wvvh.stayhomeapp.quests.QuestManager
+import de.wvvh.stayhomeapp.user.UserData
 import kotlinx.android.synthetic.main.level_card.view.*
 import kotlinx.android.synthetic.main.quest_card.view.*
 
@@ -57,7 +58,7 @@ class QuestAdapter(
                 holder.bind(currentItem, position, this)
             }
             is LevelViewHolder -> {
-                holder.icon.setImageResource(userData.iconResource)
+                holder.icon.setImageResource(userData.icon)
                 val levelString = context?.getString(R.string.level, userData.level)
                 holder.level.text = levelString // userData.level
                 holder.name.text = userData.name
