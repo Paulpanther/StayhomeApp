@@ -14,3 +14,12 @@ interface IQuest {
      */
     val userVerified: Boolean
 }
+
+interface IQuestBuilder {
+    fun checkRequirements()
+    fun createQuest()
+}
+
+interface IQuestModule {
+    val quests: List<IQuestBuilder>
+}

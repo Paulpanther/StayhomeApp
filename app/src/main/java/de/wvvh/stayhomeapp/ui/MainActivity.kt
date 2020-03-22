@@ -6,8 +6,9 @@ import androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_F
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import de.wvvh.stayhomeapp.R
-import de.wvvh.stayhomeapp.achievements.AchievementModules
 import de.wvvh.stayhomeapp.achievements.AchievementStore
+import de.wvvh.stayhomeapp.achievements.ModuleLoader
+import de.wvvh.stayhomeapp.achievements.Modules
 import de.wvvh.stayhomeapp.ui.main.SectionsPagerAdapter
 import io.paperdb.Paper
 
@@ -27,9 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         Paper.init(applicationContext)
 
-        loadModules()
+        ModuleLoader.loadModules(Modules)
         AchievementStore.notifyAchievements()
     }
-
-    private fun loadModules() = AchievementModules.modules.forEach { AchievementStore.loadModule(it) }
 }
