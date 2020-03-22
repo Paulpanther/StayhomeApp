@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Paper.init(applicationContext)
         setContentView(R.layout.activity_main)
         val sectionsPagerAdapter = SectionsPagerAdapter(
             this,
@@ -29,10 +30,11 @@ class MainActivity : AppCompatActivity() {
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
 
-        Paper.init(applicationContext)
+
         if (InitialLaunch.isFirstLaunch()) {
             startActivity(Intent(this, BoardingName::class.java))
         }
+        startActivity(Intent(this, NotHomeQuestionActivity::class.java))
 
 
         ModuleLoader.loadModules(Modules)
