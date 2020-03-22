@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.NotHomeQuestionActivity">
+    tools:context=".ui.NotHomeQuestionActivity"
+    >
 
 
     <com.google.android.material.textview.MaterialTextView
@@ -31,15 +32,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <LinearLayout
+        <RadioGroup
+            android:id="@+id/radio_group_questions"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <include
-                android:id="@+id/oac_groceries"
-                layout="@layout/outside_activity_card" />
-        </LinearLayout>
+            <RadioButton
+                android:id="@+id/radio_groceries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RadioButton" />
+
+            <RadioButton
+                android:id="@+id/radio_groceries2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RadioButton" />
+        </RadioGroup>
     </ScrollView>
 
 

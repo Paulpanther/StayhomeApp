@@ -6,13 +6,17 @@
     style="@style/Widget.MaterialComponents.CardView"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:focusable="true"
         android:clickable="true"
-        android:onClick="listenerList">
+        android:onClick="listenerList"
+        android:id="@+id/main_constraint_oac"
+        >
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/headline"

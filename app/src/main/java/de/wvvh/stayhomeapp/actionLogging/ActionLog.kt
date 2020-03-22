@@ -2,7 +2,7 @@ package de.wvvh.stayhomeapp.actionLogging
 
 import java.util.*
 
-data class Entry(val date: Date, val action: Action)
+data class Entry(val date: Date = Calendar.getInstance().time, val action: Action)
 
 class Action(val actionString: String): CharSequence by actionString {
     constructor(tag: String, event: String): this(tag + event)
