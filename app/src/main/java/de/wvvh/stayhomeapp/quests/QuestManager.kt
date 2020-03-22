@@ -74,8 +74,8 @@ object QuestManager {
         }.toMutableList()
     }
 
-    fun updateQuests() {
-        _activeQuests.forEach{ it.check() }
+    fun updateQuests(log: ActionLog) {
+        _activeQuests.forEach{ it.check(log) }
         storeActiveQuests()
     }
     fun loadModule(module: IQuestModule) = module.quests.forEach { register(it)}
