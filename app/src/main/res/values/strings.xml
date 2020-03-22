@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">StayHomeApp</string>
-    <string name="title_activity_default">DefaultActivity</string>
+    <string name="app_name">StayHome App</string>
+    <string name="title_activity_default">StayHome App</string>
     <string name="tab_quests">Quests</string>
     <string name="tab_achievements">Achievements</string>
 

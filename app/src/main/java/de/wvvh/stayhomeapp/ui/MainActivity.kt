@@ -10,6 +10,7 @@ import de.wvvh.stayhomeapp.achievements.AchievementStore
 import de.wvvh.stayhomeapp.achievements.ModuleLoader
 import de.wvvh.stayhomeapp.achievements.Modules
 import de.wvvh.stayhomeapp.ui.main.SectionsPagerAdapter
+import de.wvvh.stayhomeapp.user.UserData
 import io.paperdb.Paper
 
 class MainActivity : AppCompatActivity() {
