@@ -1,6 +1,7 @@
 package de.wvvh.stayhomeapp.quests
 
 import de.wvvh.stayhomeapp.achievements.AchievementStore
+import de.wvvh.stayhomeapp.actionLogging.Action
 import de.wvvh.stayhomeapp.actionLogging.Entry
 import java.util.*
 
@@ -19,26 +20,26 @@ object QuestManager {
         _activeQuests.remove(quest)
         storeActiveQuests()
         val now = Calendar.getInstance().time
-        AchievementStore.addEntry(Entry(now, quest.tag + ":skipped"))
+        AchievementStore.addEntry(Entry(now, Action(quest.tag, ":skipped")))
     }
 
     fun finishQuest(quest: IQuest) {
         _activeQuests.remove(quest)
         storeActiveQuests()
         val now = Calendar.getInstance().time
-        AchievementStore.addEntry(Entry(now, quest.tag + ":finished"))
+        AchievementStore.addEntry(Entry(now, Action(quest.tag, ":finished")))
     }
 
     fun loadIntoActive() {
         val newQuests = allQuests.filter {
-            val isActive = activeQuests.find { active -> it.getTag() == active.tag } != null
+            val isActive = activeQuests.find { active -> it.tag.toString() == active.tag } != null
             !isActive && it.checkRequirements(AchievementStore.log) }
             .map {
                 it.createQuest() }
         _activeQuests.addAll(newQuests)
         newQuests.forEach{
             val now = Calendar.getInstance().time
-            AchievementStore.addEntry(Entry(now, it.tag + ":activated"))
+            AchievementStore.addEntry(Entry(now, Action(it.tag,  ":activated")))
         }
     }
 

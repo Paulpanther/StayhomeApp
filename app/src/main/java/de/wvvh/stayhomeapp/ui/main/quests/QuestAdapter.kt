@@ -11,7 +11,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import de.wvvh.stayhomeapp.R
+import de.wvvh.stayhomeapp.actionLogging.Action
 import de.wvvh.stayhomeapp.quests.IQuest
+import de.wvvh.stayhomeapp.quests.QuestManager
 import kotlinx.android.synthetic.main.level_card.view.*
 import kotlinx.android.synthetic.main.quest_card.view.*
 
@@ -52,6 +54,7 @@ class QuestAdapter(
                 val expString = context?.getString(R.string.exp, currentItem.exp)
                 holder.exp.text = expString// currentItem.exp
                 holder.finish.visibility = if(currentItem.userVerified) View.VISIBLE else View.GONE
+                holder.bind(currentItem, position, this)
             }
             is LevelViewHolder -> {
                 holder.icon.setImageResource(userData.iconResource)
@@ -70,6 +73,13 @@ class QuestAdapter(
         val exp: TextView = itemView.quest_exp
         val skip: Button = itemView.quest_skip
         val finish: Button = itemView.quest_finish
+
+        fun bind(quest: IQuest, position: Int, parent: RecyclerView.Adapter<RecyclerView.ViewHolder>) {
+            skip.setOnClickListener {
+                QuestManager.skipQuest(quest)
+                parent.notifyItemRemoved(position)
+            }
+        }
     }
 
     class LevelViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -80,6 +90,7 @@ class QuestAdapter(
 }
 
 class EmptyQuest: IQuest {
+    override val tag: String = "debug.emptyQuest"
     override val exp = 0
     override val titleResource = 0
     override val descriptionResource = 0
