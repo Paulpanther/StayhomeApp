@@ -6,14 +6,14 @@
         United we stand, divided we fall!</string>
 
     <!-- couch potato achievement-->
-    <string name="core_couch_potato_1_title"> Stay-At-Home </string>
-    <string name="core_couch_potato_1_desc">You did not leave your house unnecessarily for 3 days in a row!</string>
-    <string name="core_couch_potato_1_explanation"> It is important that everybody stays at home as much as he or she can in this COVID-19 crisis. Slowing down the virus as much as possible can safe lives. Only leave your house when you really have to! Strolling together with people from your household or visiting the supermarket to buy goods for the week is of course okay.</string>
+    <string name="core_couch_potato_1_title"> Stubenhocker </string>
+    <string name="core_couch_potato_1_desc">Du bist 3 Tage nur zu nötigen Zwecken aus dem Haus gegangen!</string>
+    <string name="core_couch_potato_1_explanation"> Es ist wichtig, das jeder während der Covid-19 Krise so viel wie möglich zuhause bleibt. Den Virus so viel wie möglich zu verlangsamen, rettet Leben. Verlasse das Haus nur, wenn du wirklich musst! Ein Saziergang mit Leuten aus deinem Haushalt, oder für die Woche einkaufen gehen ist natürlich in Ordnung.</string>
 
     <string name="core_couch_potato_2_title"> Couch Potato </string>
     <string name="core_couch_potato_2_desc">You did not leave your house unnecessarily for 5 days in a row!</string>
 
-    <string name="core_couch_potato_3_title"> Homebody </string>
+    <string name="core_couch_potato_3_title"> Eremit </string>
     <string name="core_couch_potato_3_desc">You did not leave your house unnecessarily for 7 days in a row!</string>
 
 
