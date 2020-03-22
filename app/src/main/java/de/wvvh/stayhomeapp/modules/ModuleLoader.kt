@@ -4,6 +4,7 @@ import de.wvvh.stayhomeapp.achievements.AchievementStore
 import de.wvvh.stayhomeapp.quests.QuestManager
 
 /**
+ * Registers Quest and Achievement modules
  * @author Antonius Naumann
  * @date 22.03.2020
  */

@@ -4,12 +4,16 @@ import de.wvvh.stayhomeapp.actionLogging.ActionLog
 import de.wvvh.stayhomeapp.actionLogging.Entry
 import de.wvvh.stayhomeapp.actionLogging.TagFilter
 
+interface ISerializedQuest {
+    val tag: String
+    var solved: Boolean
+}
+
 /**
  * @author Antonius Naumann
  * @date 22.03.2020
  */
-interface IQuest {
-    val tag: String
+interface IQuest : ISerializedQuest {
     val exp: Int
     val titleResource: Int
     val descriptionResource: Int
@@ -18,11 +22,13 @@ interface IQuest {
      * Only use this for quests which are impossible to track.
      */
     val userVerified: Boolean
-    var solved: Boolean
 
     fun check(log: ActionLog)
 }
 
+/**
+ * Builds [IQuest]s of one type
+ */
 abstract class IQuestBuilder {
     abstract fun checkRequirements(log: ActionLog): Boolean
     abstract fun createQuest(): IQuest
@@ -30,6 +36,12 @@ abstract class IQuestBuilder {
 
     fun getQuestActions(log: ActionLog): List<Entry> {
         return TagFilter(log).filter(tag)
+    }
+
+    fun fromSerialized(serializedQuest: ISerializedQuest): IQuest {
+        val newQuest = createQuest()
+        newQuest.solved = serializedQuest.solved
+        return newQuest
     }
 }
 

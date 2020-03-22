@@ -3,14 +3,14 @@ package de.wvvh.stayhomeapp.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.service.autofill.TextValueSanitizer
 import android.view.View
-import android.widget.TextView
 import com.google.android.material.textfield.TextInputEditText
 import de.wvvh.stayhomeapp.R
-import de.wvvh.stayhomeapp.user.UserData
 import de.wvvh.stayhomeapp.user.UserDataStore
 
+/**
+ * Is started on initial launch, asks for user name
+ */
 class BoardingName : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +23,7 @@ class BoardingName : AppCompatActivity() {
         val text = findViewById<TextInputEditText>(R.id.user_name_text).text.toString()
         if (text != "") {
             UserDataStore.createUser(text)
-            startActivity(Intent(this, InitialLaunch::class.java))
+            startActivity(Intent(this, BoardingWifi::class.java))
             finish()
         }
     }

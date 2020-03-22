@@ -11,6 +11,10 @@ import io.paperdb.Paper
  * @date 21.03.2020
  */
 object AchievementStore {
+
+    /**
+     * The ActionLog which stores all Actions done by the user
+     */
     private val _log = LogLoader.read()
     val log: ActionLog
         get() = _log
@@ -38,6 +42,9 @@ object AchievementStore {
         _log.addObserver(this::notifyAchievements)
     }
 
+    /**
+     * Adds new Entry to ActionLog and stores it
+     */
     fun addEntry(element: Entry) {
         _log.add(element)
         LogLoader.write(_log)
@@ -46,6 +53,9 @@ object AchievementStore {
     fun loadModule(module: IAchievementModule) = module.achievements.forEach { register(it)}
     fun register(element: IAchievement) = _achievements.add(element)
 
+    /**
+     * Check if Achievements are finished
+     */
     public fun notifyAchievements(log: ActionLog = _log) {
         val finished = achievements.filter { it.evaluate(log) }
         if (!(finished unorderedEquals finishedAchievements)) {

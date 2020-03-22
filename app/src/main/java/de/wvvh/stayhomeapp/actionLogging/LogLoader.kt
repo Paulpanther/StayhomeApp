@@ -3,6 +3,9 @@ package de.wvvh.stayhomeapp.actionLogging
 import de.wvvh.stayhomeapp.util.Storage
 import io.paperdb.Paper
 
+/**
+ * Load and store the [ActionLog] from persistent storage
+ */
 object LogLoader {
 
     fun read(): ActionLog {

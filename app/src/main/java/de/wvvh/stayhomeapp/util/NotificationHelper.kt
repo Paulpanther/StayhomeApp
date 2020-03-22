@@ -10,6 +10,9 @@ import androidx.core.app.NotificationCompat
 import de.wvvh.stayhomeapp.R
 import de.wvvh.stayhomeapp.ui.MainActivity
 
+/**
+ * Helper methods to simplify notification construction
+ */
 object NotificationHelper {
 
     private const val CHANNEL_ID = "de.wwvh.stayhomeapp"
