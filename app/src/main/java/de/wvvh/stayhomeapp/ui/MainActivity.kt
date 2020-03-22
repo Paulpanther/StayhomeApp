@@ -22,13 +22,18 @@ class MainActivity : AppCompatActivity() {
         val sectionsPagerAdapter = SectionsPagerAdapter(
             this,
             supportFragmentManager,
-            BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
+            BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+        )
         val viewPager: ViewPager = findViewById(R.id.view_pager)
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
 
         Paper.init(applicationContext)
+        if (InitialLaunch.isFirstLaunch()) {
+            startActivity(Intent(this, BoardingName::class.java))
+        }
+
 
         ModuleLoader.loadModules(Modules)
         WifiHelper.enqueueWorker()
