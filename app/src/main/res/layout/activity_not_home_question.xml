@@ -39,22 +39,6 @@
             <include
                 android:id="@+id/oac_groceries"
                 layout="@layout/outside_activity_card" />
-
-            <include
-                android:id="@+id/oac_test"
-                layout="@layout/outside_activity_card" />
-
-            <include
-                android:id="@+id/oac_visit_grandma"
-                layout="@layout/outside_activity_card" />
-
-            <include
-                android:id="@+id/oac_unnecessary"
-                layout="@layout/outside_activity_card" />
-
-            <include
-                android:id="@+id/oac_buy_seasoning"
-                layout="@layout/outside_activity_card" />
         </LinearLayout>
     </ScrollView>
 
@@ -88,6 +72,7 @@
             android:backgroundTint="@color/colorPrimary"
             android:text="Button"
             android:textColor="@color/cardview_light_background"
+            android:onClick="onSubmit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

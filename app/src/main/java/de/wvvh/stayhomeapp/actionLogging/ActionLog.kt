@@ -9,7 +9,7 @@ enum class Action {
     DEBUG_BACKFLIP
 }
 
-data class Entry(val date: Date, val action: Action)
+data class Entry(val date: Date = Calendar.getInstance().time, val action: Action)
 
 /**
  * @author Antonius Naumann
