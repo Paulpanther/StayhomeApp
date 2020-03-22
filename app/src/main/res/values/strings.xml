@@ -21,7 +21,7 @@
     <string name="name_tell_us_your_name">Please tell us your Name!</string>
     <string name="name_label_name">Name</string>
     <!--Not Home Question-->
-    <string name="return_home_question">Where did the Adventure go?</string>
+    <string name="return_home_question">Where did the adventure go?</string>
     <string name="rb_einkaufen">Einkaufen</string>
 
     <string name="skip_quest">Skip</string>
