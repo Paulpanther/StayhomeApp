@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cardview_light_background"
-    tools:context=".InitialLaunch">
+    tools:context=".ui.InitialLaunch">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorAccentDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -78,11 +79,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="4dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_heimnetz"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/textView3"
                             android:layout_width="wrap_content"
                             android:layout_height="32dp"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="8dp"
                             android:gravity="center_vertical"
                             android:text="@string/current_wifi"
                             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
@@ -90,16 +103,6 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
-
-                        <ImageView
-                            android:id="@+id/imageView2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:src="@drawable/ic_icon_nachteule"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView3" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
