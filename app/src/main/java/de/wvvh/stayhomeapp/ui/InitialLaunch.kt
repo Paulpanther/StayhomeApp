@@ -24,14 +24,17 @@ class InitialLaunch : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    public fun setHomeWifi(view: View) {
+    fun setHomeWifi(view: View) {
         val success = WifiHelper.storeCurrentId(applicationContext)
         if (success) {
             Paper.book().write(Storage.IS_FIRST_LAUNCH, false)
+            startActivity(Intent(this, MainActivity::class.java))
+        } else {
+            // TODO Dann mach es doch selber
         }
     }
 
-    public fun openWiFi(view: View){
-        startActivity( Intent(Settings.ACTION_WIFI_SETTINGS))
+    fun openWiFi(view: View){
+        startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
     }
 }
