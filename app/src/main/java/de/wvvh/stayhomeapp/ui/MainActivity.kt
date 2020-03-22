@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager,
             BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
         val viewPager: ViewPager = findViewById(R.id.view_pager)
-        startActivity(Intent(this, InitialLaunch::class.java))
+        startActivity(Intent(this, NotHomeQuestionActivity::class.java))
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
