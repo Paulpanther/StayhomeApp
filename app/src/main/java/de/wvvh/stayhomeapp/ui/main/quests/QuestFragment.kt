@@ -19,14 +19,14 @@ import kotlinx.android.synthetic.main.fragment_main_quest.view.*
 
 // TODO: remove temporary quest mockups
 object exampleQuest: IQuest {
-    override val exp = 420
+    override val exp = 250
     override val titleResource = R.string.quest_sample_title
     override val descriptionResource = R.string.quest_sample_desc
     override val userVerified = false
 }
 
 object userVerfiedQuest: IQuest {
-    override val exp = 420
+    override val exp = 100
     override val titleResource = R.string.quest_sample_2_title
     override val descriptionResource = R.string.quest_sample_2_desc
     override val userVerified = true
@@ -35,11 +35,7 @@ object userVerfiedQuest: IQuest {
 val temporaryQuestList: List<IQuest> = listOf(
     userVerfiedQuest,
     userVerfiedQuest,
-    exampleQuest,
-    exampleQuest,
-    userVerfiedQuest,
-    exampleQuest,
-    userVerfiedQuest
+    exampleQuest
 )
 
 data class UserData(val name: String, var level: Int, var iconResource: Int)

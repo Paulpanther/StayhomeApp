@@ -43,7 +43,7 @@ class QuestAdapter(
             is QuestViewHolder -> {
                 holder.title.setText(currentItem.titleResource)
                 holder.desc.setText(currentItem.descriptionResource)
-                holder.exp.setText(R.string.exp)
+                holder.exp.text = currentItem.exp.toString() + " ERF"
                 holder.finish.visibility = if(currentItem.userVerified) View.VISIBLE else View.GONE
             }
             is LevelViewHolder -> {
