@@ -1,10 +1,12 @@
 package de.wvvh.stayhomeapp.actionLogging
 
-import android.util.Log
 import java.util.*
 
 data class Entry(val date: Date, val action: Action)
 
+/**
+ * An Action done by the User like finishing quests or going outside
+ */
 class Action(val actionString: String): CharSequence by actionString {
     constructor(tag: String, event: String): this("$tag:$event")
 
@@ -29,6 +31,8 @@ class Action(val actionString: String): CharSequence by actionString {
 }
 
 /**
+ * Stores all Actions done by the user
+ *
  * @author Antonius Naumann
  * @author Julian Benda
  * @date 21.03.2020

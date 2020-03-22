@@ -10,6 +10,10 @@ import android.widget.TextView
 import de.wvvh.stayhomeapp.R
 import de.wvvh.stayhomeapp.wifi.WifiHelper
 
+/**
+ * Is started if the user just returned home,
+ * asks why the user was outside
+ */
 class NotHomeQuestionActivity : AppCompatActivity() {
 
     lateinit private var radioReg: MutableMap<Int, String>

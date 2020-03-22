@@ -26,6 +26,9 @@ interface IQuest : ISerializedQuest {
     fun check(log: ActionLog)
 }
 
+/**
+ * Builds [IQuest]s of one type
+ */
 abstract class IQuestBuilder {
     abstract fun checkRequirements(log: ActionLog): Boolean
     abstract fun createQuest(): IQuest

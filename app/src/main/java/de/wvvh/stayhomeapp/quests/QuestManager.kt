@@ -11,8 +11,9 @@ import de.wvvh.stayhomeapp.user.UserDataStore
 import java.util.*
 
 /**
- * @author Antonius Naumann
- * @date 22.03.2020
+ * Manage active quests
+ * Stores and loads quests into persistent storage if needed
+ * Each action on a quest is stored in the [ActionLog]
  */
 object QuestManager {
     private val allQuests: MutableList<IQuestBuilder> = mutableListOf()
@@ -47,6 +48,9 @@ object QuestManager {
         }
     }
 
+    /**
+     * Asks all [IQuestBuilder]s if the requirements are set and if true, build quests into active
+     */
     fun loadIntoActive() {
         val newQuests = allQuests.filter {
             val isActive = activeQuests.find { active -> it.tag.toString() == active.tag } != null
@@ -61,11 +65,17 @@ object QuestManager {
         }
     }
 
+    /**
+     * Persistent store quests
+     */
     private fun storeActiveQuests() {
         val serialized = _activeQuests.map { it as ISerializedQuest }
         Paper.book().write(Storage.ACTIVE_QUESTS, serialized)
     }
 
+    /**
+     * Persistent load quest
+     */
     private fun loadActiveQuests(): MutableList<IQuest> {
         val serialized = Paper.book().read<MutableList<ISerializedQuest>>(Storage.ACTIVE_QUESTS, mutableListOf())
         return serialized.map {
@@ -74,10 +84,14 @@ object QuestManager {
         }.toMutableList()
     }
 
+    /**
+     * check each active quest if they are solved
+     */
     fun updateQuests(log: ActionLog) {
         _activeQuests.forEach{ it.check(log) }
         storeActiveQuests()
     }
+
     fun loadModule(module: IQuestModule) = module.quests.forEach { register(it)}
     fun register(element: IQuestBuilder) = allQuests.add(element)
 }

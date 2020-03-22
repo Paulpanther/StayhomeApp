@@ -13,7 +13,10 @@ import de.wvvh.stayhomeapp.util.Storage
 import de.wvvh.stayhomeapp.wifi.WifiHelper
 import io.paperdb.Paper
 
-class InitialLaunch : AppCompatActivity() {
+/**
+ * Is started on initial launch after [BoardingName], asks for home wifi
+ */
+class BoardingWifi : AppCompatActivity() {
 
     companion object {
         fun isFirstLaunch(): Boolean {

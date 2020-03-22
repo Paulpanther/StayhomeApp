@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.BoardingName"/>
         <activity android:name=".ui.NotHomeQuestionActivity" />
-        <activity android:name=".ui.InitialLaunch" />
+        <activity android:name=".ui.BoardingWifi" />
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/title_activity_default"

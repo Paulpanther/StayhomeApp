@@ -1,5 +1,8 @@
 package de.wvvh.stayhomeapp.util
 
+/**
+ * Keys for storage with Paper
+ */
 object Storage {
     const val HOME_WIFI = "home_wifi"
     const val CONNECTIONS = "connections"

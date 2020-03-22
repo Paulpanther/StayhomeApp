@@ -35,6 +35,9 @@ interface IAchievementModule {
     val achievements: List<IAchievement>
 }
 
+/**
+ * Loads Achievements from persistent storage
+ */
 object FinishedAchievementLoader {
 
     fun fromAll(all: List<IAchievement>): List<IAchievement> {

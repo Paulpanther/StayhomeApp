@@ -1,5 +1,8 @@
 package de.wvvh.stayhomeapp.actionLogging
 
+/**
+ * Filters Entries with some properties
+ */
 abstract class Filter(val log: List<Entry>) {
     abstract fun filter(value: String): List<Entry>
 }

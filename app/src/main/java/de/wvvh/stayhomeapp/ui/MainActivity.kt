@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Set and load Views
         setContentView(R.layout.activity_main)
         val sectionsPagerAdapter = SectionsPagerAdapter(
             this,
@@ -30,19 +32,29 @@ class MainActivity : AppCompatActivity() {
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
 
+        // Init DB
         Paper.init(applicationContext)
-        if (InitialLaunch.isFirstLaunch()) {
+
+        // Start Boarding Activity if this is the first launch
+        if (BoardingWifi.isFirstLaunch()) {
             startActivity(Intent(this, BoardingName::class.java))
         }
 
-
+        // Load Quest and Achievement Modules
         ModuleLoader.loadModules(Modules)
+
+        // Start WifiChangeWorker
         WifiHelper.enqueueWorker()
+
+        // Start NotHomeQuestionActivity if just returned home
         if (WifiHelper.isJustReturnedToHome()) {
             startActivity(Intent(this, NotHomeQuestionActivity::class.java))
         }
 
+        // Check if new Achievements are finished
         AchievementStore.notifyAchievements()
+
+        // Check if new Quests want to be active
         QuestManager.loadIntoActive()
     }
 }
