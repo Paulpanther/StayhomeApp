@@ -14,7 +14,12 @@
     <string name="home_wifi">Home Network</string>
     <string name="button_open_wifi_settings">WIFI SETTINGS</string>
     <string name="button_confirm_wifi">SET WIFI</string>
+    <string name="wifi_disabled_title">WiFi Disabled</string>
+    <string name="wifi_disabled_message">Hey, We noticed You are not connected to any WiFi right now. Please go into your settings and connect to your home network.</string>
 
+    <string name="name_button_confirm">OK</string>
+    <string name="name_tell_us_your_name">Please tell us your Name!</string>
+    <string name="name_label_name">Name</string>
     <!--Not Home Question-->
     <string name="return_home_question">Where did the Adventure go?</string>
     <string name="rb_einkaufen">Einkaufen</string>
