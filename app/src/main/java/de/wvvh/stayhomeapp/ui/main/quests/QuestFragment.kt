@@ -8,39 +8,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import de.wvvh.stayhomeapp.R
+import de.wvvh.stayhomeapp.modules.debug.DebugBackflipQuestBuilder
 import de.wvvh.stayhomeapp.quests.IQuest
 import de.wvvh.stayhomeapp.ui.main.TabFragment
 import kotlinx.android.synthetic.main.fragment_main_quest.view.*
-
 
 /**
  * @author Antonius Naumann
  * @date 21.03.2020
  */
 
-// TODO: remove temporary quest mockups
-object exampleQuest: IQuest {
-    override val exp = 420
-    override val titleResource = R.string.quest_sample_title
-    override val descriptionResource = R.string.quest_sample_desc
-    override val userVerified = false
-}
-
-object userVerfiedQuest: IQuest {
-    override val exp = 420
-    override val titleResource = R.string.quest_sample_2_title
-    override val descriptionResource = R.string.quest_sample_2_desc
-    override val userVerified = true
-}
-
 val temporaryQuestList: List<IQuest> = listOf(
-    userVerfiedQuest,
-    userVerfiedQuest,
-    exampleQuest,
-    exampleQuest,
-    userVerfiedQuest,
-    exampleQuest,
-    userVerfiedQuest
+    DebugBackflipQuestBuilder.createQuest()
 )
 
 data class UserData(val name: String, var level: Int, var iconResource: Int)
@@ -54,7 +33,7 @@ class QuestFragment: TabFragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_main_quest, container, false)
         val questList: RecyclerView = root.quest_list
-        questList.adapter = QuestAdapter(temporaryQuestList, user)
+        questList.adapter = QuestAdapter(temporaryQuestList, user, this.context)
         questList.layoutManager = LinearLayoutManager(
             context,
             RecyclerView.VERTICAL,

@@ -26,5 +26,6 @@
 
     <string name="skip_quest">Skip</string>
     <string name="finish_quest">Done</string>
-    <string name="exp">%1$i EXP</string>
+    <string name="exp">%1$d EXP</string>
+    <string name="level">Level %1$d</string>
 </resources>
