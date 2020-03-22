@@ -1,5 +1,7 @@
 package de.wvvh.stayhomeapp.quests
 
+import de.wvvh.stayhomeapp.actionLogging.ActionLog
+
 /**
  * @author Antonius Naumann
  * @date 22.03.2020
@@ -16,8 +18,8 @@ interface IQuest {
 }
 
 interface IQuestBuilder {
-    fun checkRequirements()
-    fun createQuest()
+    fun checkRequirements(log: ActionLog): Boolean
+    fun createQuest(): IQuest
 }
 
 interface IQuestModule {

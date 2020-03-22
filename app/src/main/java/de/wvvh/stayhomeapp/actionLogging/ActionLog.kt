@@ -4,6 +4,9 @@ import java.util.*
 
 enum class Action {
     LEFT_HOME,
+    LEFT_HOME_STROLL,
+
+    DEBUG_BACKFLIP
 }
 
 data class Entry(val date: Date, val action: Action)

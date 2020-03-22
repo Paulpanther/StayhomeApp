@@ -1,5 +1,6 @@
-package de.wvvh.stayhomeapp.achievements
+package de.wvvh.stayhomeapp.modules
 
+import de.wvvh.stayhomeapp.achievements.AchievementStore
 import de.wvvh.stayhomeapp.quests.QuestManager
 
 /**

@@ -17,7 +17,11 @@ class CountAggregator(log: ActionLog): Aggregator(log) {
     override fun aggregate(action: Action) = log.count { (_, event) -> event == action }
 }
 
-class IntervalCountAggregator(log: ActionLog, val start: Date, val end: Date): Aggregator(log) {
+class IntervalCountAggregator(
+    log: ActionLog,
+    val start: Date,
+    val end: Date = Calendar.getInstance().time) : Aggregator(log) {
+
     override fun aggregate(action: Action) = log.count {
             (timestamp, event) -> timestamp > start && timestamp < end && event == action
     }
