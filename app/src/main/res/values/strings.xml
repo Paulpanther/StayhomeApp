@@ -5,7 +5,7 @@
     <string name="tab_achievements">Achievements</string>
 
     <string name="notification_channel">StayHome App Benachrichtigungen</string>
-    <string name="notification_not_home_title">YDU hast dein Zuhause verlassen</string>
+    <string name="notification_not_home_title">Du hast dein Zuhause verlassen</string>
     <string name="notification_not_home_text">Öffne die App, um uns mitzuteilen warum</string>
 
     <string name="skip_quest">Überspringen</string>
