@@ -29,6 +29,8 @@ class QuestAdapter(
     private val context: Context?)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private val numOfHeaders = 1
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
             viewType,
@@ -47,13 +49,13 @@ class QuestAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
             is QuestViewHolder -> {
-                val currentItem = questList[position - 1]
+                val currentItem = questList[position - numOfHeaders]
                 holder.title.setText(currentItem.titleResource)
                 holder.desc.setText(currentItem.descriptionResource)
                 val expString = context?.getString(R.string.exp, currentItem.exp)
                 holder.exp.text = expString// currentItem.exp
                 holder.finish.visibility = if(currentItem.userVerified) View.VISIBLE else View.GONE
-                holder.bind(currentItem, position, this)
+                holder.bind(currentItem, this)
             }
             is LevelViewHolder -> {
                 holder.icon.setImageResource(userDataStore.icon)
@@ -65,7 +67,7 @@ class QuestAdapter(
         }
     }
 
-    override fun getItemCount() = questList.size + 1
+    override fun getItemCount() = questList.size + numOfHeaders
 
     class QuestViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.quest_title
@@ -74,16 +76,16 @@ class QuestAdapter(
         val skip: Button = itemView.quest_skip
         val finish: Button = itemView.quest_finish
 
-        fun bind(quest: IQuest, position: Int, parent: RecyclerView.Adapter<RecyclerView.ViewHolder>) {
+        fun bind(quest: IQuest, parent: RecyclerView.Adapter<RecyclerView.ViewHolder>) {
             skip.setOnClickListener {
                 QuestManager.skipQuest(quest)
-                parent.notifyItemRemoved(position)
+                parent.notifyItemRemoved(adapterPosition)
             }
 
             // TODO: button does not finish quest but only marks it as done. User needs to collect the exp by click
             finish.setOnClickListener {
                 QuestManager.finishQuest(quest)
-                parent.notifyItemRemoved(position)
+                parent.notifyItemRemoved(adapterPosition)
             }
         }
     }
@@ -94,7 +96,7 @@ class QuestAdapter(
         val name: TextView = itemView.user_name
 
         fun bind(userDataStore: IUserDataUpdate, parent: RecyclerView.Adapter<RecyclerView.ViewHolder>) {
-            userDataStore.register { parent.notifyItemChanged(0) }
+            userDataStore.register { parent.notifyItemChanged(adapterPosition) }
         }
     }
 }
