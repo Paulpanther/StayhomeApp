@@ -1,34 +1,73 @@
 package de.wvvh.stayhomeapp.user
 
+import android.util.Log
 import de.wvvh.stayhomeapp.R
 import de.wvvh.stayhomeapp.achievements.AchievementStore
 import de.wvvh.stayhomeapp.util.Storage
 import io.paperdb.Paper
+import kotlin.properties.Delegates
+import kotlin.reflect.KProperty
 
-object UserDataStore {
-    private lateinit var _user: UserData
-    val user: UserData
+interface IUserDataUpdate: IUserData {
+    fun register(observer: (IUserData) -> Unit)
+}
+
+interface IUserData {
+    val level: Int
+    var xp: Float
+    var icon: Int
+    var name: String
+}
+
+object UserDataStore: IUserDataUpdate {
+    private val observers: MutableList<(IUserData) -> Unit> = mutableListOf()
+    private val noUser = UserData("___No User", 0f, 0)
+    private var user: UserData = noUser
         get() {
-            if (!::_user.isInitialized) {
+            if (field == noUser) {
                 val loaded = UserData.load()
-                if (loaded == null) {
-                    return UserData("No User")
-                } else {
-                    _user = loaded
-                }
+                user = loaded ?: UserData()
             }
-            return _user
+            return field
         }
 
-    fun createUser(name: String) {
-        if (!::_user.isInitialized) {
-            _user = UserData(name)
+    override var xp: Float
+        get() = user.xp
+        set(value) {
+            user.xp = value
+            notifyObservers(this)
         }
+    override var name: String
+        get() = user.name
+        set(value) {
+            user.name = value
+            notifyObservers(this)
+        }
+    override var icon: Int
+        get() = user.icon
+        set(value) {
+            user.icon = value
+            notifyObservers(this)
+        }
+    override val level: Int
+        get() = user.level
+
+
+    override fun register(observer: (IUserData) -> Unit) {
+        observers.add(observer)
+    }
+
+    private fun onUserDataChange(property: KProperty<*>, oldValue: UserData, newValue: UserData) {
+        notifyObservers(this)
+    }
+
+    private fun notifyObservers(newValue: IUserData) {
+        observers.forEach{ it(newValue) }
     }
 }
 
 data class UserData(
-    val name: String,
+    private var _name: String = "",
     private var _xp: Float = 0f,
     private var _icon: Int = R.drawable.ic_icon_user_2) {
 
@@ -56,9 +95,12 @@ data class UserData(
             store()
         }
 
-    init {
-        store()
-    }
+    var name: String
+        get() = _name
+        set(value) {
+            _name = value
+            store()
+        }
 
     private val xpPerLevel = 1000f
     val level

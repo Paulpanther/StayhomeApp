@@ -3,6 +3,7 @@ package de.wvvh.stayhomeapp.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.google.android.material.textfield.TextInputEditText
 import de.wvvh.stayhomeapp.R
@@ -22,7 +23,7 @@ class BoardingName : AppCompatActivity() {
     fun temp(view: View){
         val text = findViewById<TextInputEditText>(R.id.user_name_text).text.toString()
         if (text != "") {
-            UserDataStore.createUser(text)
+            UserDataStore.name = text
             startActivity(Intent(this, BoardingWifi::class.java))
             finish()
         }

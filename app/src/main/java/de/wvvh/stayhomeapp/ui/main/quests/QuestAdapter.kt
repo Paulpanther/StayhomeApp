@@ -15,7 +15,7 @@ import de.wvvh.stayhomeapp.actionLogging.Action
 import de.wvvh.stayhomeapp.actionLogging.ActionLog
 import de.wvvh.stayhomeapp.quests.IQuest
 import de.wvvh.stayhomeapp.quests.QuestManager
-import de.wvvh.stayhomeapp.user.UserData
+import de.wvvh.stayhomeapp.user.IUserDataUpdate
 import kotlinx.android.synthetic.main.level_card.view.*
 import kotlinx.android.synthetic.main.quest_card.view.*
 
@@ -25,15 +25,9 @@ import kotlinx.android.synthetic.main.quest_card.view.*
  */
 class QuestAdapter(
     private val questList: List<IQuest>,
-    _userData: UserData,
+    private val userDataStore: IUserDataUpdate,
     private val context: Context?)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    var userData = _userData
-    set(value) {
-        field = value
-        this.notifyItemChanged(0)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
@@ -62,10 +56,11 @@ class QuestAdapter(
                 holder.bind(currentItem, position, this)
             }
             is LevelViewHolder -> {
-                holder.icon.setImageResource(userData.icon)
-                val levelString = context?.getString(R.string.level, userData.level)
+                holder.icon.setImageResource(userDataStore.icon)
+                val levelString = context?.getString(R.string.level, userDataStore.level)
                 holder.level.text = levelString // userData.level
-                holder.name.text = userData.name
+                holder.name.text = userDataStore.name
+                holder.bind(userDataStore, this)
             }
         }
     }
@@ -97,5 +92,9 @@ class QuestAdapter(
         val icon: ImageView = itemView.user_icon
         val level: TextView = itemView.user_level
         val name: TextView = itemView.user_name
+
+        fun bind(userDataStore: IUserDataUpdate, parent: RecyclerView.Adapter<RecyclerView.ViewHolder>) {
+            userDataStore.register { parent.notifyItemChanged(0) }
+        }
     }
 }

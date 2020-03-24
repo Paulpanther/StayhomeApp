@@ -44,7 +44,7 @@ object QuestManager {
             storeActiveQuests()
             val now = Calendar.getInstance().time
             AchievementStore.addEntry(Entry(now, Action(quest.tag, "finished")))
-            UserDataStore.user.xp += quest.exp
+            UserDataStore.xp += quest.exp
         }
     }
 

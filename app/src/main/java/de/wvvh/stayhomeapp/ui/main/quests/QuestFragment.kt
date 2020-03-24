@@ -32,7 +32,7 @@ class QuestFragment: Fragment() {
 
         adapter = QuestAdapter(
             QuestManager.activeQuests,
-            UserDataStore.user,
+            UserDataStore,
             this.context)
         questList.adapter = adapter
         questList.layoutManager = LinearLayoutManager(
@@ -40,11 +40,5 @@ class QuestFragment: Fragment() {
             RecyclerView.VERTICAL,
             false)
         return root
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // TODO: observe UserDataStore instead
-        if(::adapter.isInitialized) adapter.userData = UserDataStore.user
     }
 }
