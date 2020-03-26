@@ -15,9 +15,7 @@ object AchievementStore {
     /**
      * The ActionLog which stores all Actions done by the user
      */
-    private val _log = LogLoader.read()
-    val log: ActionLog
-        get() = _log
+    val log: ActionLog = LogLoader.read()
 
     private val _achievements: MutableList<IAchievement> = mutableListOf()
     val achievements: List<IAchievement>
@@ -39,15 +37,15 @@ object AchievementStore {
     fun isAchievementFinished(achievement: IAchievement) = finishedAchievements.contains(achievement)
 
     init {
-        _log.addObserver(this::notifyAchievements)
+        log.addObserver(this::notifyAchievements)
     }
 
     /**
      * Adds new Entry to ActionLog and stores it
      */
     fun addEntry(element: Entry) {
-        _log.add(element)
-        LogLoader.write(_log)
+        log.add(element)
+        LogLoader.write(log)
     }
 
     fun loadModule(module: IAchievementModule) = module.achievements.forEach { register(it)}
@@ -56,8 +54,8 @@ object AchievementStore {
     /**
      * Check if Achievements are finished
      */
-    public fun notifyAchievements(log: ActionLog = _log) {
-        val finished = achievements.filter { it.evaluate(log) }
+    fun notifyAchievements(actionLog: ActionLog = log) {
+        val finished = achievements.filter { it.evaluate(actionLog) }
         if (!(finished unorderedEquals finishedAchievements)) {
             finishedAchievements = finished
         }

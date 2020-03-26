@@ -28,4 +28,5 @@
     <string name="finish_quest">Done</string>
     <string name="exp">%1$d EXP</string>
     <string name="level">Level %1$d</string>
+    <string name="tab_debug_action_log">Debug: Action Log</string>
 </resources>

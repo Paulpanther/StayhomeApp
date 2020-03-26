@@ -56,4 +56,12 @@ class ActionLog(private val log: MutableList<Entry> = mutableListOf()): List<Ent
     fun addObserver(observer: (ActionLog) -> Unit) {
         observers.add(observer)
     }
+
+    override fun toString(): String {
+        val sb: StringBuilder = StringBuilder()
+        for(entry in this) {
+            sb.appendln(entry)
+        }
+        return sb.toString()
+    }
 }
