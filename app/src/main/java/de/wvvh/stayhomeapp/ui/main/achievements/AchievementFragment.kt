@@ -20,12 +20,14 @@ import kotlinx.android.synthetic.main.fragment_main_achievement.view.*
  */
 class AchievementFragment: Fragment() {
 
+    var achievementList: RecyclerView? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_main_achievement, container, false)
-        val achievementList: RecyclerView = root.achievement_view
+        achievementList = root.achievement_view
 
         val detailView = root.findViewById<View>(R.id.big_card)
         detailView.setOnClickListener { detailView.visibility = View.GONE }
@@ -47,13 +49,19 @@ class AchievementFragment: Fragment() {
                 explanation.setText(achievement.explanationResource)
             }
         }
-        achievementList.adapter = AchievementAdapter(AchievementStore.achievements, clickListener)
-        achievementList.layoutManager = GridLayoutManager(
+        achievementList?.adapter = AchievementAdapter(AchievementStore.achievements, clickListener)
+        achievementList?.layoutManager = GridLayoutManager(
             context,
             2,
             RecyclerView.VERTICAL,
             false)
 
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // TODO: only update all changed achievements
+        if(AchievementStore.notifyAchievements()) achievementList?.adapter?.notifyDataSetChanged()
     }
 }
