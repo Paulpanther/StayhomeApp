@@ -8,6 +8,8 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import de.wvvh.stayhomeapp.R
 import de.wvvh.stayhomeapp.achievements.AchievementStore
+import de.wvvh.stayhomeapp.actionLogging.Actions
+import de.wvvh.stayhomeapp.actionLogging.Entry
 import de.wvvh.stayhomeapp.modules.ModuleLoader
 import de.wvvh.stayhomeapp.modules.Modules
 import de.wvvh.stayhomeapp.quests.QuestManager
@@ -54,10 +56,16 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, NotHomeQuestionActivity::class.java))
         }
 
-        // Check if new Achievements are finished
-        AchievementStore.notifyAchievements()
-
         // Check if new Quests want to be active
         QuestManager.loadIntoActive()
+
+        AchievementStore.log.add(Entry(action = Actions.APP_START))
+        // Check if new Achievements are finished
+        AchievementStore.notifyAchievements()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        AchievementStore.log.add(Entry(action = Actions.APP_RESUME))
     }
 }

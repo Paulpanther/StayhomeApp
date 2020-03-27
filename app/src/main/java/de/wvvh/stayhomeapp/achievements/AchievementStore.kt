@@ -37,7 +37,7 @@ object AchievementStore {
     fun isAchievementFinished(achievement: IAchievement) = finishedAchievements.contains(achievement)
 
     init {
-        log.addObserver(this::notifyAchievements)
+        log.addObserver(this::_notifyAchievements)
     }
 
     /**
@@ -54,10 +54,15 @@ object AchievementStore {
     /**
      * Check if Achievements are finished
      */
-    fun notifyAchievements(actionLog: ActionLog = log) {
+    fun notifyAchievements(actionLog: ActionLog = log): Boolean {
         val finished = achievements.filter { it.evaluate(actionLog) }
         if (!(finished unorderedEquals finishedAchievements)) {
             finishedAchievements = finished
         }
+        return finished.isNotEmpty()
+    }
+
+    private fun _notifyAchievements(actionLog: ActionLog = log) {
+        notifyAchievements(log)
     }
 }
